@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>AskOsc | Transaction Coordination Made Simple</title>
+    <meta name="description" content="AskOsc provides expert, detail-oriented residential real estate transaction coordination services in Ohio. Let Oscar Brimelow manage your transactions from contract to close.">
+    <meta name="keywords" content="transaction coordinator ohio, real estate tc, residential real estate, oscar brimelow, askosc">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --navy: #0d1b2a;
+            --dark-gray: #415a77;
+            --mid-gray: #778da9;
+            --light-gray: #e0e1dd;
+            --white: #ffffff;
+            --font-header: 'Inter', sans-serif;
+            --font-body: 'Lato', sans-serif;
+        }
+
+        /* --- General & Reset --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--white);
+            color: var(--dark-gray);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-header);
+            color: var(--navy);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        h1 { font-size: 3rem; }
+        h2 { font-size: 2.2rem; text-align: center; }
+        p { margin-bottom: 20px; }
+
+        section {
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        /* --- Header & Navigation --- */
+        .header {
+            background-color: var(--white);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            font-family: var(--font-header);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--navy);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-gray);
+            font-weight: 700;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--navy);
+        }
+
+        .cta-button {
+            background-color: var(--navy);
+            color: var(--white);
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 700;
+            transition: background-color 0.3s, transform 0.3s;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            background-color: var(--dark-gray);
+            transform: translateY(-2px);
+        }
+
+        /* --- Hero Section --- */
+        #home {
+            background: linear-gradient(rgba(13, 27, 42, 0.7), rgba(13, 27, 42, 0.7)), url('https://images.unsplash.com/photo-1560518883-ce09059ee41f?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=3600') no-repeat center center/cover;
+            color: var(--white);
+            text-align: center;
+            padding: 120px 20px;
+        }
+
+        #home h1 { color: var(--white); }
+        #home p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        /* --- About Section --- */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        .about-text { flex: 1; }
+
+        /* --- Services Section --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .service-card {
+            background-color: #f8f9fa;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .service-card svg {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 20px;
+            color: var(--navy);
+        }
+        .service-card h3 {
+            margin-bottom: 10px;
+        }
+
+        /* --- FAQs Section --- */
+        .faq-item {
+            border-bottom: 1px solid var(--light-gray);
+            padding: 20px 0;
+        }
+        .faq-item:last-child { border-bottom: none; }
+        .faq-item h3 { margin-bottom: 10px; font-size: 1.2rem; }
+
+        /* --- Testimonials Placeholder --- */
+        #testimonials { background-color: #f8f9fa; text-align: center; }
+        #testimonials p { font-style: italic; color: var(--mid-gray); }
+
+        /* --- Contact Section --- */
+        .contact-form {
+            max-width: 700px;
+            margin: 40px auto 0;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .contact-form label {
+            margin-bottom: 5px;
+            font-weight: 700;
+            color: var(--navy);
+        }
+        .contact-form input, .contact-form textarea {
+            padding: 12px;
+            border: 1px solid var(--light-gray);
+            border-radius: 5px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+        }
+        .contact-form input:focus, .contact-form textarea:focus {
+            outline: 2px solid var(--dark-gray);
+        }
+        .contact-form button {
+            justify-self: start;
+            border: none;
+            cursor: pointer;
+            width: 150px;
+        }
+
+        /* --- Footer --- */
+        .footer {
+            background-color: var(--navy);
+            color: var(--light-gray);
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .nav-links {
+                gap: 20px;
+            }
+            .about-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <a href="#home" class="logo">AskOsc</a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#faqs">FAQs</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home">
+            <div class="hero-content">
+                <h1>Transaction Coordination Made Simple.</h1>
+                <p>I'm Oscar Brimelow. I provide experienced, detail-oriented support for residential real estate transactions in Ohio, so you can focus on what matters most: your clients.</p>
+                <a href="#contact" class="cta-button">Let's talk!</a>
+            </div>
+        </section>
+
+        <section id="about" class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Meet Oscar Brimelow</h2>
+                    <p>I’m the founder of AskOsc, your calm and competent partner in real estate transaction management. My goal is to streamline every deal, providing seamless support from contract to close. With a sharp eye for detail and a commitment to clear communication, I ensure nothing gets overlooked.</p>
+                    <p>I have successfully coordinated approximately <strong>50 residential real estate transactions</strong>, giving me the hands-on experience needed to navigate the complexities of the process. My services are exclusively focused on residential properties, as this specialization allows me to provide a higher level of expertise.</p>
+                    <p>While I do not hold a real estate license, one is not required for Transaction Coordinators in Ohio. I operate with the utmost professionalism and integrity, ensuring every file is compliant and managed to the highest standard.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="container">
+            <h2>What I Offer</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0h18M12 12.75h.008v.008H12v-.008Z" /></svg>
+                    <h3>Timeline & Deadline Management</h3>
+                    <p>I meticulously track all contract dates and deadlines, from inspections to closing, ensuring nothing is ever missed.</p>
+                </div>
+                <div class="service-card">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>
+                    <h3>Document Coordination</h3>
+                    <p>I manage the collection of all necessary documents and disclosures, ensuring all parties have what they need for a complete file.</p>
+                </div>
+                <div class="service-card">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 0 1 .865-.501 48.17 48.17 0 0 0 3.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" /></svg>
+                    <h3>Communication Hub</h3>
+                    <p>I act as the central point of contact for the lender, title company, and other parties to keep everyone informed and on track.</p>
+                </div>
+                <div class="service-card">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
+                    <h3>Compliance Assurance</h3>
+                    <p>I review transaction files for completeness and accuracy, ensuring your brokerage has a compliant and audit-ready file.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials" class="container">
+            <h2>What Clients Are Saying</h2>
+            <p><em>Testimonials from satisfied agents and brokerages will be featured here soon.</em></p>
+        </section>
+
+        <section id="faqs" class="container">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <h3>What is a Transaction Coordinator?</h3>
+                <p>A Transaction Coordinator (TC) is a real estate professional who manages all the administrative tasks and paperwork involved in a transaction from the moment it goes under contract until it closes. We handle deadlines, documentation, and communication to ensure a smooth process.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Why do I need one?</h3>
+                <p>By delegating the administrative work to a TC, a real estate agent saves valuable time—up to 16 hours per transaction. This allows you to focus on high-value activities like lead generation, showing properties, and negotiating deals, ultimately helping you grow your business.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Are you licensed?</h3>
+                <p>I do not hold a real estate license. A specific Transaction Coordinator license is not required in the state of Ohio. My expertise comes from direct, hands-on experience and a deep understanding of the residential closing process, and I operate with the highest level of professionalism and care.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Do you work with commercial or land deals?</h3>
+                <p>No. To provide the most focused and expert service possible, I specialize exclusively in residential real estate transactions. I do not handle commercial or land-only deals.</p>
+            </div>
+        </section>
+
+        <section id="contact" class="container">
+            <h2>Let's work together.</h2>
+            <p>Ready to streamline your transactions? Fill out the form below and I'll get back to you within one business day.</p>
+            <form action="#" method="POST" class="contact-form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="brokerage">Brokerage Name</label>
+                    <input type="text" id="brokerage" name="brokerage">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone (Optional)</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+                <div class="form-group" style="grid-column: 1 / -1;">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <div class="form-group" style="grid-column: 1 / -1;">
+                    <button type="submit" class="cta-button">Submit Form</button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 AskOsc.com. All Rights Reserved. | Transaction Coordination for Ohio Real Estate Agents</p>
+    </footer>
+
+</body>
+</html>

@@ -145,6 +145,117 @@
         .service-card i { font-size: 2.5rem; color: var(--accent); margin-bottom: 18px; }
         .service-card h3 { margin-bottom: 10px; }
         .service-card .learn-btn { margin-top: 16px; }
+        
+        /* --- Process Section --- */
+        .process-timeline { max-width: 800px; margin: 40px auto 0; }
+        .process-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 30px;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        .process-step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 25px;
+            top: 60px;
+            width: 2px;
+            height: 40px;
+            background: var(--accent);
+        }
+        .step-number {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        .step-content h3 { margin-bottom: 10px; color: var(--navy); }
+        
+        /* --- Pricing Section --- */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .pricing-card {
+            background: var(--white);
+            border: 2px solid var(--light-gray);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .pricing-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(13,27,42,0.1); }
+        .pricing-card.featured {
+            border-color: var(--accent);
+            transform: scale(1.05);
+        }
+        .pricing-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: var(--white);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+        .pricing-header h3 { margin-bottom: 10px; }
+        .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 20px;
+        }
+        .price span { font-size: 1rem; color: var(--mid-gray); }
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+        .pricing-features li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .pricing-features i { color: var(--accent); }
+        
+        /* --- Stats Section --- */
+        #stats { background: linear-gradient(135deg, var(--navy), var(--dark-gray)); color: var(--white); }
+        #stats h2 { color: var(--white); }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+        .stat-label {
+            font-size: 1.1rem;
+            color: var(--light-gray);
+        }
+        
         /* --- Testimonials Section --- */
         #testimonials { background-color: #f8f9fa; text-align: center; position: relative; }
         .testimonial-carousel { max-width: 700px; margin: 0 auto; position: relative; }
@@ -176,6 +287,48 @@
         .faq-item.open .faq-answer { display: block; animation: fadeIn 0.5s; }
         .faq-item.open .faq-question i { transform: rotate(90deg); }
         .faq-question i { transition: transform 0.3s; margin-left: 10px; }
+        
+        /* --- Resources Section --- */
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .resource-card {
+            background: var(--white);
+            border: 1px solid var(--light-gray);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .resource-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(13,27,42,0.1); }
+        .resource-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.5rem;
+        }
+        .resource-card h3 { margin-bottom: 15px; }
+        .resource-card p { margin-bottom: 20px; color: var(--mid-gray); }
+        .resource-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.3s;
+        }
+        .resource-link:hover { color: var(--accent-dark); }
+        
         /* --- Contact Section --- */
         .contact-form { max-width: 700px; margin: 40px auto 0; display: grid; grid-template-columns: 1fr; gap: 20px; }
         .form-group { display: flex; flex-direction: column; }
@@ -189,9 +342,80 @@
         }
         .contact-form input:focus, .contact-form textarea:focus { outline: 2px solid var(--accent); }
         .contact-form button { justify-self: start; border: none; cursor: pointer; width: 170px; }
-        .contact-socials { display: flex; gap: 18px; margin-top: 18px; justify-content: center; }
-        .contact-socials a { color: var(--accent); font-size: 1.7rem; transition: color 0.3s; }
-        .contact-socials a:hover { color: var(--accent-dark); }
+        .contact-form select { padding: 12px; border: 1px solid var(--light-gray); border-radius: 5px; font-family: var(--font-body); font-size: 1rem; }
+        .contact-form select:focus { outline: 2px solid var(--accent); }
+        
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        .contact-method {
+            text-align: center;
+            padding: 30px 20px;
+            border: 1px solid var(--light-gray);
+            border-radius: 12px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .contact-method:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(13,27,42,0.1); }
+        .method-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.5rem;
+        }
+        .contact-method h3 { margin-bottom: 15px; }
+        .contact-method p { margin-bottom: 20px; color: var(--mid-gray); }
+        
+        .contact-divider {
+            text-align: center;
+            margin: 40px 0;
+            position: relative;
+        }
+        .contact-divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--light-gray);
+        }
+        .contact-divider span {
+            background: var(--white);
+            padding: 0 20px;
+            color: var(--mid-gray);
+            font-weight: 700;
+        }
+        
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        .info-item i {
+            font-size: 1.5rem;
+            color: var(--accent);
+        }
+        .info-item strong { display: block; margin-bottom: 5px; }
+        .info-item p { margin: 0; color: var(--mid-gray); }
+        
         .contact-success { color: var(--accent); font-weight: 700; margin-top: 10px; text-align: center; display: none; }
         /* --- Footer --- */
         .footer {
@@ -224,7 +448,9 @@
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#services">Services</a></li>
+                <li><a href="#pricing">Pricing</a></li>
                 <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#resources">Resources</a></li>
                 <li><a href="#faqs">FAQs</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -292,7 +518,103 @@
                 </div>
             </div>
             <div style="text-align:center; margin-top:40px;">
-                <a href="#contact" class="secondary-btn">Compare Packages</a>
+                <a href="#pricing" class="secondary-btn">Compare Packages</a>
+            </div>
+        </section>
+
+        <section id="process" class="container">
+            <h2>How It Works</h2>
+            <div class="process-timeline">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Initial Consultation</h3>
+                        <p>We discuss your needs, review your current process, and determine how I can best support your transactions.</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Contract to Close</h3>
+                        <p>Once a deal goes under contract, I take over all administrative tasks, keeping you updated throughout the process.</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Seamless Closing</h3>
+                        <p>I ensure all documents are ready, deadlines are met, and the closing proceeds smoothly without any last-minute surprises.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="pricing" class="container">
+            <h2>Service Packages</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Starter</h3>
+                        <div class="price">$299<span>/transaction</span></div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fa-solid fa-check"></i> Basic document coordination</li>
+                        <li><i class="fa-solid fa-check"></i> Timeline tracking</li>
+                        <li><i class="fa-solid fa-check"></i> Email updates</li>
+                        <li><i class="fa-solid fa-check"></i> Closing coordination</li>
+                    </ul>
+                    <a href="#contact" class="cta-button">Get Started</a>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">Most Popular</div>
+                    <div class="pricing-header">
+                        <h3>Professional</h3>
+                        <div class="price">$399<span>/transaction</span></div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fa-solid fa-check"></i> Everything in Starter</li>
+                        <li><i class="fa-solid fa-check"></i> Priority communication</li>
+                        <li><i class="fa-solid fa-check"></i> Custom checklists</li>
+                        <li><i class="fa-solid fa-check"></i> Compliance review</li>
+                        <li><i class="fa-solid fa-check"></i> Phone support</li>
+                    </ul>
+                    <a href="#contact" class="cta-button">Get Started</a>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Premium</h3>
+                        <div class="price">$499<span>/transaction</span></div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fa-solid fa-check"></i> Everything in Professional</li>
+                        <li><i class="fa-solid fa-check"></i> Dedicated coordinator</li>
+                        <li><i class="fa-solid fa-check"></i> 24/7 emergency support</li>
+                        <li><i class="fa-solid fa-check"></i> Custom reporting</li>
+                        <li><i class="fa-solid fa-check"></i> Brokerage integration</li>
+                    </ul>
+                    <a href="#contact" class="cta-button">Get Started</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="stats" class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" data-target="50">0</div>
+                    <div class="stat-label">Transactions Completed</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="100">0</div>
+                    <div class="stat-label">Happy Clients</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="16">0</div>
+                    <div class="stat-label">Hours Saved Per Deal</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="99">0</div>
+                    <div class="stat-label">% Success Rate</div>
+                </div>
             </div>
         </section>
         <section id="testimonials" class="container">
@@ -323,6 +645,30 @@
                 </div>
             </div>
         </section>
+        <section id="resources" class="container">
+            <h2>Resources & Insights</h2>
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <div class="resource-icon"><i class="fa-solid fa-file-lines"></i></div>
+                    <h3>Transaction Checklist</h3>
+                    <p>Download our comprehensive checklist to ensure nothing gets missed in your next transaction.</p>
+                    <a href="#" class="resource-link">Download PDF <i class="fa-solid fa-download"></i></a>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-icon"><i class="fa-solid fa-clock"></i></div>
+                    <h3>Timeline Guide</h3>
+                    <p>Learn the critical deadlines and milestones in a typical residential real estate transaction.</p>
+                    <a href="#" class="resource-link">Read More <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-icon"><i class="fa-solid fa-lightbulb"></i></div>
+                    <h3>Pro Tips</h3>
+                    <p>Expert advice on streamlining your real estate business and improving client satisfaction.</p>
+                    <a href="#" class="resource-link">Read More <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </section>
+
         <section id="faqs" class="container">
             <h2>Frequently Asked Questions</h2>
             <div class="faq-list">
@@ -342,18 +688,52 @@
                     <div class="faq-question" onclick="toggleFAQ(this)">Do you work with commercial or land deals? <i class="fa-solid fa-chevron-right"></i></div>
                     <div class="faq-answer">No. To provide the most focused and expert service possible, I specialize exclusively in residential real estate transactions. I do not handle commercial or land-only deals.</div>
                 </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">How quickly can you start? <i class="fa-solid fa-chevron-right"></i></div>
+                    <div class="faq-answer">I can typically begin working on a transaction within 24 hours of our initial consultation. For urgent situations, I can start immediately to ensure nothing falls through the cracks.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">What areas do you serve? <i class="fa-solid fa-chevron-right"></i></div>
+                    <div class="faq-answer">I serve the entire state of Ohio, with particular expertise in the Greater Columbus, Cleveland, Cincinnati, and Dayton metropolitan areas. I can coordinate transactions anywhere in the state.</div>
+                </div>
             </div>
         </section>
         <section id="contact" class="container">
             <h2>Let's work together.</h2>
-            <p>Ready to streamline your transactions? Fill out the form below and I'll get back to you within one business day.</p>
+            <p>Ready to streamline your transactions? Choose your preferred way to get in touch.</p>
+            
+            <div class="contact-methods">
+                <div class="contact-method">
+                    <div class="method-icon"><i class="fa-solid fa-calendar-check"></i></div>
+                    <h3>Schedule a Call</h3>
+                    <p>Book a 15-minute consultation to discuss your needs and see how I can help.</p>
+                    <a href="#" class="cta-button">Book Now</a>
+                </div>
+                <div class="contact-method">
+                    <div class="method-icon"><i class="fa-solid fa-envelope"></i></div>
+                    <h3>Send Email</h3>
+                    <p>Drop me a line with your questions or to request a custom quote.</p>
+                    <a href="mailto:oscar@askosc.com" class="secondary-btn">Email Me</a>
+                </div>
+                <div class="contact-method">
+                    <div class="method-icon"><i class="fa-solid fa-phone"></i></div>
+                    <h3>Call Directly</h3>
+                    <p>Prefer to talk? Call me directly for immediate assistance.</p>
+                    <a href="tel:+15555555555" class="secondary-btn">Call Now</a>
+                </div>
+            </div>
+
+            <div class="contact-divider">
+                <span>Or fill out the form below</span>
+            </div>
+
             <form action="#" method="POST" class="contact-form" onsubmit="return showSuccess(event)">
                 <div class="form-group">
-                    <label for="name">Name</label>
+                    <label for="name">Name *</label>
                     <input type="text" id="name" name="name" required>
                 </div>
                 <div class="form-group">
-                    <label for="email">Email</label>
+                    <label for="email">Email *</label>
                     <input type="email" id="email" name="email" required>
                 </div>
                 <div class="form-group">
@@ -361,25 +741,51 @@
                     <input type="text" id="brokerage" name="brokerage">
                 </div>
                 <div class="form-group">
-                    <label for="phone">Phone (Optional)</label>
+                    <label for="phone">Phone</label>
                     <input type="tel" id="phone" name="phone">
                 </div>
-                <div class="form-group" style="grid-column: 1 / -1;">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" rows="5" required></textarea>
+                <div class="form-group">
+                    <label for="service">Service Interest</label>
+                    <select id="service" name="service">
+                        <option value="">Select a service</option>
+                        <option value="starter">Starter Package</option>
+                        <option value="professional">Professional Package</option>
+                        <option value="premium">Premium Package</option>
+                        <option value="consultation">Just a consultation</option>
+                    </select>
                 </div>
                 <div class="form-group" style="grid-column: 1 / -1;">
-                    <button type="submit" class="cta-button">Submit Form</button>
+                    <label for="message">Message *</label>
+                    <textarea id="message" name="message" rows="5" required placeholder="Tell me about your transaction coordination needs..."></textarea>
+                </div>
+                <div class="form-group" style="grid-column: 1 / -1;">
+                    <button type="submit" class="cta-button">Send Message</button>
                 </div>
             </form>
-            <div class="contact-success" id="contactSuccess">Thank you! Your message has been sent.</div>
-            <div class="contact-socials">
-                <a href="mailto:oscar@askosc.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
-                <a href="tel:+15555555555" title="Phone"><i class="fa-solid fa-phone"></i></a>
-                <a href="https://www.linkedin.com/in/oscarbrimelow/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-            </div>
-            <div style="text-align:center; margin-top:20px;">
-                <a href="#" class="secondary-btn">Schedule a Call</a>
+            <div class="contact-success" id="contactSuccess">Thank you! Your message has been sent. I'll get back to you within one business day.</div>
+            
+            <div class="contact-info">
+                <div class="info-item">
+                    <i class="fa-solid fa-clock"></i>
+                    <div>
+                        <strong>Response Time</strong>
+                        <p>Within 1 business day</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fa-solid fa-map-marker-alt"></i>
+                    <div>
+                        <strong>Service Area</strong>
+                        <p>Statewide Ohio</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fa-solid fa-shield-check"></i>
+                    <div>
+                        <strong>Confidentiality</strong>
+                        <p>100% secure & private</p>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
@@ -404,6 +810,7 @@
             var nav = document.getElementById('navLinks');
             nav.classList.toggle('open');
         }
+        
         // Testimonial carousel
         var testimonials = document.querySelectorAll('.testimonial');
         var dots = document.querySelectorAll('.carousel-dot');
@@ -413,11 +820,20 @@
                 dots[i].classList.toggle('active', i === idx);
             });
         }
+        
+        // Auto-rotate testimonials
+        var currentTestimonial = 0;
+        setInterval(() => {
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+            showTestimonial(currentTestimonial);
+        }, 5000);
+        
         // FAQ toggle
         function toggleFAQ(el) {
             var item = el.parentElement;
             item.classList.toggle('open');
         }
+        
         // Contact form success
         function showSuccess(e) {
             e.preventDefault();
@@ -426,6 +842,86 @@
             e.target.reset();
             return false;
         }
+        
+        // Animated statistics
+        function animateStats() {
+            const stats = document.querySelectorAll('.stat-number');
+            stats.forEach(stat => {
+                const target = parseInt(stat.getAttribute('data-target'));
+                const duration = 2000; // 2 seconds
+                const increment = target / (duration / 16); // 60fps
+                let current = 0;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    stat.textContent = Math.floor(current);
+                }, 16);
+            });
+        }
+        
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    if (entry.target.id === 'stats') {
+                        animateStats();
+                    }
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe elements for animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const animateElements = document.querySelectorAll('.service-card, .pricing-card, .resource-card, .contact-method');
+            animateElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+            
+            // Observe stats section
+            const statsSection = document.getElementById('stats');
+            if (statsSection) {
+                observer.observe(statsSection);
+            }
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Form validation enhancement
+        document.querySelectorAll('.contact-form input, .contact-form textarea, .contact-form select').forEach(field => {
+            field.addEventListener('blur', function() {
+                if (this.hasAttribute('required') && !this.value.trim()) {
+                    this.style.borderColor = '#e74c3c';
+                } else {
+                    this.style.borderColor = '';
+                }
+            });
+        });
     </script>
 </body>
 </html>

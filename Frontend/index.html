@@ -98,10 +98,13 @@
         /* --- Hero Section --- */
         #home {
             background: linear-gradient(rgba(13, 27, 42, 0.7), rgba(13, 27, 42, 0.7)), url('dj-johnson-1kx8e7t66mQ-unsplash (1).jpg') no-repeat center center/cover;
+            background-attachment: fixed;
+            filter: blur(0.1px);
             color: var(--white);
             text-align: center;
-            padding: 140px 20px 120px 20px;
+            padding: 200px 20px 200px 20px;
             position: relative;
+            min-height: 100vh;
         }
         #home .hero-content { position: relative; z-index: 2; }
         #home h1 { color: var(--white); font-size: 3.2rem; }
@@ -110,7 +113,7 @@
         .hero-btns { 
             display: flex; 
             justify-content: center; 
-            gap: 20px; 
+            gap: 10px; 
             margin-top: 30px; 
             flex-wrap: wrap;
             align-items: center;
@@ -134,7 +137,13 @@
         .secondary-btn { background: var(--navy); color: var(--white); }
         .secondary-btn:hover { background: var(--dark-gray); }
         /* --- About Section --- */
-        .about-content { display: flex; align-items: center; gap: 50px; flex-wrap: wrap; }
+        .about-content { 
+            display: flex; 
+            align-items: center; 
+            gap: 50px; 
+            flex-wrap: wrap;
+            justify-content: center;
+        }
         .about-text { flex: 1; }
         .about-photo {
             width: 180px; height: 180px; border-radius: 50%; background: var(--mid-gray); display: flex; align-items: center; justify-content: center; overflow: hidden; box-shadow: 0 4px 16px rgba(13,27,42,0.08); flex-shrink: 0;
@@ -458,7 +467,7 @@
         /* --- Responsive Design --- */
         @media (max-width: 900px) {
             .header { flex-direction: column; gap: 15px; }
-            .about-content { flex-direction: column; text-align: center; }
+            .about-content { flex-direction: column; text-align: center; justify-content: center; }
             h1 { font-size: 2.2rem; }
             h2 { font-size: 1.5rem; }
             .about-photo { margin-bottom: 18px; }
@@ -529,7 +538,7 @@
                     <h2>Meet Oscar Brimelow</h2>
                     <p>I’m the founder of AskOsc, your calm and competent partner in real estate transaction management. My goal is to streamline every deal, providing seamless support from contract to close. With a sharp eye for detail and a commitment to clear communication, I ensure nothing gets overlooked.</p>
                     <p>I have successfully coordinated approximately <strong>50 residential real estate transactions</strong>, giving me the hands-on experience needed to navigate the complexities of the process. My services are exclusively focused on residential properties, as this specialization allows me to provide a higher level of expertise.</p>
-                    <p>While I do not hold a real estate license, one is not required for Transaction Coordinators in Ohio. I operate with the utmost professionalism and integrity, ensuring every file is compliant and managed to the highest standard.</p>
+                    <p>I operate with the utmost professionalism and integrity, ensuring every file is compliant and managed to the highest standard.</p>
                     <div class="about-btns">
                         <a href="#contact" class="cta-button">Contact Me</a>
                     </div>
@@ -558,7 +567,7 @@
                     <a href="#contact" class="learn-btn cta-button">Learn More</a>
                 </div>
                 <div class="service-card">
-                    <i class="fa-solid fa-shield-check"></i>
+                    <i class="fa-solid fa-shield-halved"></i>
                     <h3>Compliance Assurance</h3>
                     <p>I review transaction files for completeness and accuracy, ensuring your brokerage has a compliant and audit-ready file.</p>
                     <a href="#contact" class="learn-btn cta-button">Learn More</a>
@@ -741,8 +750,8 @@
                     <div class="faq-answer">By delegating the administrative work to a TC, a real estate agent saves valuable time—up to 16 hours per transaction. This allows you to focus on high-value activities like lead generation, showing properties, and negotiating deals, ultimately helping you grow your business.</div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(this)">Are you licensed? <i class="fa-solid fa-chevron-right"></i></div>
-                    <div class="faq-answer">I do not hold a real estate license. A specific Transaction Coordinator license is not required in the state of Ohio. My expertise comes from direct, hands-on experience and a deep understanding of the residential closing process, and I operate with the highest level of professionalism and care.</div>
+                    <div class="faq-question" onclick="toggleFAQ(this)">What qualifications do you have? <i class="fa-solid fa-chevron-right"></i></div>
+                    <div class="faq-answer">My expertise comes from direct, hands-on experience coordinating 50+ residential real estate transactions and a deep understanding of the residential closing process. I operate with the highest level of professionalism and care, ensuring every transaction is handled with precision and attention to detail.</div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question" onclick="toggleFAQ(this)">Do you work with commercial or land deals? <i class="fa-solid fa-chevron-right"></i></div>
@@ -754,7 +763,7 @@
                 </div>
                 <div class="faq-item">
                     <div class="faq-question" onclick="toggleFAQ(this)">What areas do you serve? <i class="fa-solid fa-chevron-right"></i></div>
-                    <div class="faq-answer">I serve the entire state of Ohio, with particular expertise in the Greater Columbus, Cleveland, Cincinnati, and Dayton metropolitan areas. I can coordinate transactions anywhere in the state.</div>
+                    <div class="faq-answer">I primarily serve the Cleveland area and surrounding communities in Northeast Ohio. I can coordinate transactions throughout the region with expertise in local market conditions and requirements.</div>
                 </div>
             </div>
         </section>

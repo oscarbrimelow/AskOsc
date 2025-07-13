@@ -599,6 +599,64 @@
         .contact-intro {
             text-align: center;
         }
+        /* Card/Section backgrounds */
+        .service-card, .pricing-card, .resource-card, .contact-method, .info-item, #testimonials, #faqs, #resources, #pricing, #about, #services, #contact, .faq-item {
+            background: var(--card-bg) !important;
+            color: var(--text-main) !important;
+            border: 1.5px solid var(--border);
+            box-shadow: 0 2px 16px rgba(0,0,0,0.10);
+        }
+        .testimonial-carousel, .faq-list {
+            background: transparent !important;
+        }
+        .testimonial, .testimonial.active {
+            background: var(--card-bg) !important;
+            color: var(--text-main) !important;
+        }
+        .pricing-card.featured {
+            border-color: var(--accent);
+        }
+        .pricing-badge {
+            background: var(--accent);
+            color: var(--navy);
+        }
+        .price, .stat-number {
+            color: var(--white);
+        }
+        .pricing-features li, .stat-label, .testimonial-text, .faq-answer, .resource-card p, .contact-method p, .info-item p {
+            color: var(--text-secondary) !important;
+        }
+        .about-photo, .testimonial-photo, .resource-icon, .method-icon {
+            background: var(--navy);
+        }
+        .footer {
+            background-color: var(--navy);
+            color: var(--text-secondary);
+        }
+        .footer-links a, .footer-socials a { color: var(--text-secondary); }
+        .footer-links a:hover, .footer-socials a:hover { color: var(--accent); }
+        .faq-item { background: var(--card-bg) !important; color: var(--text-main) !important; }
+        .faq-question { color: var(--accent); }
+        .faq-answer { color: var(--text-secondary); }
+        .contact-form input, .contact-form textarea, .contact-form select {
+            background: #232b3a;
+            color: var(--white);
+            border: 1.5px solid var(--border);
+        }
+        .contact-form input:focus, .contact-form textarea:focus, .contact-form select:focus {
+            outline: 2px solid var(--accent);
+        }
+        .contact-success { color: var(--accent); }
+        /* Process/timeline step headings */
+        .process-step h3 {
+            color: var(--white) !important;
+        }
+        @media (max-width: 900px) {
+            .container { padding: 24px 5px; }
+        }
+        @media (max-width: 600px) {
+            .container { padding: 10px 1px; }
+        }
     </style>
 </head>
 <body>

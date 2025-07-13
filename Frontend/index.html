@@ -903,7 +903,8 @@
                 <span>Or fill out the form below</span>
             </div>
 
-            <form action="https://formspree.io/f/xblkrkjl" method="POST" class="contact-form" onsubmit="return showSuccess(event)">
+            <!-- Contact Form: Formspree integration -->
+            <form action="https://formspree.io/f/xblkrkjl" method="POST" class="contact-form">
                 <div class="form-group">
                     <label for="name">Name *</label>
                     <input type="text" id="name" name="name" required>
@@ -938,6 +939,14 @@
                     <button type="submit" class="cta-button">Send Message</button>
                 </div>
             </form>
+            <!-- Minimal fallback form for troubleshooting (uncomment to test)
+            <form action="https://formspree.io/f/xblkrkjl" method="POST">
+                <input type="text" name="name" required>
+                <input type="email" name="email" required>
+                <button type="submit">Send</button>
+            </form>
+            -->
+            <!-- End contact form -->
             <div class="contact-success" id="contactSuccess">Thank you! Your message has been sent. I'll get back to you within one business day.</div>
             
             <div class="contact-info">

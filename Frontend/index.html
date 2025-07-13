@@ -17,8 +17,8 @@
             --mid-gray: #778da9;
             --light-gray: #e0e1dd;
             --white: #ffffff;
-            --accent: #1abc9c;
-            --accent-dark: #159c86;
+            --accent: #ffb300; /* bright gold */
+            --accent-dark: #ff8c00; /* deep orange */
             --font-header: 'Inter', sans-serif;
             --font-body: 'Lato', sans-serif;
         }
@@ -99,12 +99,21 @@
         #home {
             background: linear-gradient(rgba(13, 27, 42, 0.7), rgba(13, 27, 42, 0.7)), url('dj-johnson-1kx8e7t66mQ-unsplash (1).jpg') no-repeat center center/cover;
             background-attachment: fixed;
-            filter: blur(0.1px);
             color: var(--white);
             text-align: center;
             padding: 200px 20px 200px 20px;
             position: relative;
             min-height: 100vh;
+            overflow: hidden;
+        }
+        #home::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 1;
+            background: inherit;
+            filter: blur(8px) brightness(0.7);
+            pointer-events: none;
         }
         #home .hero-content { position: relative; z-index: 2; }
         #home h1 { color: var(--white); font-size: 3.2rem; }
@@ -120,7 +129,7 @@
         }
         .cta-button, .secondary-btn {
             background-color: var(--accent);
-            color: var(--white);
+            color: var(--navy);
             padding: 14px 32px;
             text-decoration: none;
             border-radius: 5px;
@@ -131,11 +140,10 @@
             transition: background 0.3s, transform 0.3s;
             display: inline-block;
             text-align: center;
-            margin: 0 auto;
         }
-        .cta-button:hover, .secondary-btn:hover { background: var(--accent-dark); transform: translateY(-2px); }
+        .cta-button:hover, .secondary-btn:hover { background: var(--accent-dark); color: var(--white); transform: translateY(-2px); }
         .secondary-btn { background: var(--navy); color: var(--white); }
-        .secondary-btn:hover { background: var(--dark-gray); }
+        .secondary-btn:hover { background: var(--accent-dark); color: var(--navy); }
         /* --- About Section --- */
         .about-content { 
             display: flex; 

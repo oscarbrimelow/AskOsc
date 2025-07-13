@@ -1,8 +1,9 @@
 # Use nginx as the base image
 FROM nginx:alpine
 
-# Copy the HTML file to nginx's default serving directory
-COPY Frontend/index.html /usr/share/nginx/html/index.html
+# Copy the entire Frontend directory to nginx's default serving directory
+# This includes index.html, Headshot.jpg, and background images
+COPY Frontend/ /usr/share/nginx/html/
 
 # Expose port 80
 EXPOSE 80

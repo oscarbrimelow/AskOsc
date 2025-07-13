@@ -6,6 +6,1084 @@
     <title>AskOsc | Transaction Coordination Made Simple</title>
     <meta name="description" content="AskOsc provides expert, detail-oriented residential real estate transaction coordination services in Ohio. Let Oscar Brimelow manage your transactions from contract to close.">
     <meta name="keywords" content="transaction coordinator ohio, real estate tc, residential real estate, oscar brimelow, askosc">
+    <meta property="og:title" content="AskOsc | Transaction Coordination Made Simple">
+    <meta property="og:description" content="Seamless, detail-driven real estate transaction coordination for Cleveland-area professionals. Happy clients, less stress.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://askosc.com/">
+    <meta property="og:image" content="/Frontend/og-image.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AskOsc | Transaction Coordination Made Simple">
+    <meta name="twitter:description" content="Seamless, detail-driven real estate transaction coordination for Cleveland-area professionals. Happy clients, less stress.">
+    <meta name="twitter:image" content="/Frontend/og-image.jpg">
+    <link rel="icon" type="image/png" href="/Frontend/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        :root {
+            --navy: #0d1b2a;
+            --dark-gray: #415a77;
+            --mid-gray: #778da9;
+            --light-gray: #e0e1dd;
+            --white: #ffffff;
+            --accent: #e6a100; /* muted amber */
+            --accent-dark: #b97a00; /* deeper amber */
+            --font-header: 'Inter', sans-serif;
+            --font-body: 'Lato', sans-serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-body);
+            background-color: var(--white);
+            color: var(--dark-gray);
+            line-height: 1.7;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        h1, h2, h3 {
+            font-family: var(--font-header);
+            color: var(--navy);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        h1 { font-size: 3rem; }
+        h2 { font-size: 2.2rem; text-align: center; }
+        p { margin-bottom: 20px; }
+        section { border-bottom: 1px solid var(--light-gray); }
+        /* --- Header & Navigation --- */
+        .header {
+            background-color: var(--white);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .logo {
+            font-family: var(--font-header);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--navy);
+            text-decoration: none;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-gray);
+            font-weight: 700;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover { color: var(--accent); }
+        .cta-header {
+            background-color: var(--accent);
+            color: var(--white);
+            padding: 10px 22px;
+            border-radius: 5px;
+            font-weight: 700;
+            text-decoration: none;
+            margin-left: 20px;
+            transition: background 0.3s, transform 0.3s;
+        }
+        .cta-header:hover { background: var(--accent-dark); transform: translateY(-2px); }
+        /* --- Hamburger --- */
+        .hamburger { display: none; flex-direction: column; cursor: pointer; }
+        .bar { width: 25px; height: 3px; background: var(--navy); margin: 4px 0; transition: 0.4s; }
+        @media (max-width: 900px) {
+            .header {
+                flex-direction: row;
+                gap: 0;
+                padding: 10px 10px;
+            }
+            .logo {
+                text-align: left;
+                flex: 1 1 auto;
+                font-size: 1.4rem;
+            }
+            .header-actions {
+                flex: 0 0 auto;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+            .cta-header {
+                margin-left: 0;
+                padding: 8px 16px;
+                font-size: 1rem;
+            }
+            .hamburger {
+                display: flex;
+                margin-left: 6px;
+            }
+            .nav-links {
+                display: none;
+                position: absolute;
+                right: 10px;
+                top: 60px;
+                background: var(--white);
+                flex-direction: column;
+                gap: 0;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+                border-radius: 8px;
+                overflow: hidden;
+            }
+            .nav-links.open { display: flex; }
+        }
+        @media (max-width: 600px) {
+            .header {
+                padding: 6px 5px;
+            }
+            .logo {
+                font-size: 1.1rem;
+            }
+            .cta-header {
+                padding: 6px 10px;
+                font-size: 0.95rem;
+            }
+            .hamburger {
+                width: 32px;
+                height: 32px;
+            }
+        }
+        /* --- Hero Section --- */
+        #home {
+            background: linear-gradient(rgba(13, 27, 42, 0.7), rgba(13, 27, 42, 0.7)), url('dj-johnson-1kx8e7t66mQ-unsplash (1).jpg') no-repeat center center/cover;
+            color: var(--white);
+            text-align: center;
+            padding: 200px 20px 200px 20px;
+            position: relative;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+        #home::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 1;
+            background: inherit;
+            filter: blur(3px) brightness(0.7);
+            pointer-events: none;
+        }
+        #home .hero-content { position: relative; z-index: 2; }
+        #home h1 { color: var(--white); font-size: 3.2rem; }
+        #home .hero-sub { font-size: 1.3rem; margin-bottom: 18px; color: var(--accent); }
+        #home p { font-size: 1.2rem; max-width: 600px; margin: 0 auto 30px; }
+        .hero-btns { 
+            display: flex; 
+            justify-content: center; 
+            gap: 10px; 
+            margin-top: 30px; 
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .cta-button, .secondary-btn {
+            background-color: var(--accent);
+            color: var(--navy);
+            padding: 14px 32px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+            display: inline-block;
+            text-align: center;
+        }
+        .cta-button:hover, .secondary-btn:hover { background: var(--accent-dark); color: var(--white); transform: translateY(-2px); }
+        .secondary-btn { background: var(--navy); color: var(--white); }
+        .secondary-btn:hover { background: var(--accent-dark); color: var(--navy); }
+        /* --- About Section --- */
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            text-align: center;
+        }
+        .about-photo {
+            margin-bottom: 10px;
+        }
+        .about-text {
+            max-width: 700px;
+            width: 100%;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .about-photo {
+            width: 180px; height: 180px; border-radius: 50%; background: var(--mid-gray); display: flex; align-items: center; justify-content: center; overflow: hidden; box-shadow: 0 4px 16px rgba(13,27,42,0.08); flex-shrink: 0;
+        }
+        .about-photo img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            border-radius: 50%;
+        }
+        .about-btns { margin-top: 18px; display: flex; gap: 16px; }
+        /* --- Services Section --- */
+        .services-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 30px; 
+            margin-top: 40px;
+            align-items: start;
+        }
+        .service-card {
+            background-color: #f8f9fa;
+            padding: 36px 28px 32px 28px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 2px 12px rgba(13,27,42,0.04);
+            position: relative;
+        }
+        .service-card i { font-size: 2.5rem; color: var(--accent); margin-bottom: 18px; }
+        .service-card h3 { margin-bottom: 10px; }
+        .service-card .learn-btn { margin-top: 16px; text-align: center; }
+        .service-card { text-align: center; }
+        
+        /* --- Process Section --- */
+        .process-timeline { max-width: 800px; margin: 40px auto 0; }
+        .process-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 30px;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        .process-step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 25px;
+            top: 60px;
+            width: 2px;
+            height: 40px;
+            background: var(--accent);
+        }
+        .step-number {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        .step-content h3 { margin-bottom: 10px; color: var(--navy); }
+        
+        /* --- Pricing Section --- */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .pricing-card {
+            background: var(--white);
+            border: 2px solid var(--light-gray);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .pricing-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(13,27,42,0.1); }
+        .pricing-card.featured {
+            border-color: var(--accent);
+            transform: scale(1.05);
+        }
+        .pricing-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: var(--white);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+        .pricing-header h3 { margin-bottom: 10px; }
+        .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 20px;
+        }
+        .price span { font-size: 1rem; color: var(--mid-gray); }
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+        .pricing-features li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .pricing-features i { color: var(--accent); }
+        
+        /* --- Stats Section --- */
+        #stats { background: linear-gradient(135deg, var(--navy), var(--dark-gray)); color: var(--white); }
+        #stats h2 { color: var(--white); }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+        .stat-number.success-rate::after {
+            content: '%';
+            font-size: 2rem;
+        }
+        .stat-label {
+            font-size: 1.1rem;
+            color: var(--light-gray);
+        }
+        
+        /* --- Testimonials Section --- */
+        #testimonials { background-color: #f8f9fa; text-align: center; position: relative; }
+        .testimonial-carousel { max-width: 700px; margin: 0 auto; position: relative; }
+        .testimonial {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            animation: fadeIn 0.7s;
+        }
+        .testimonial.active { display: flex; }
+        .testimonial-photo {
+            width: 70px; height: 70px; border-radius: 50%; background: var(--mid-gray); display: flex; align-items: center; justify-content: center; margin-bottom: 12px; overflow: hidden;
+        }
+        .testimonial-photo i { font-size: 2rem; color: var(--white); }
+        .testimonial-stars { color: #f1c40f; margin-bottom: 8px; }
+        .testimonial-text { font-style: italic; color: var(--mid-gray); margin-bottom: 8px; }
+        .testimonial-name { font-weight: 700; color: var(--navy); }
+        .carousel-controls { margin-top: 18px; display: flex; justify-content: center; gap: 10px; }
+        .carousel-dot {
+            width: 12px; height: 12px; border-radius: 50%; background: var(--mid-gray); cursor: pointer; border: none; transition: background 0.3s;
+        }
+        .carousel-dot.active { background: var(--accent); }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+        /* --- FAQs Section --- */
+        .faq-list { max-width: 800px; margin: 0 auto; }
+        .faq-item { border-bottom: 1px solid var(--light-gray); padding: 20px 0; }
+        .faq-question { display: flex; align-items: center; justify-content: space-between; cursor: pointer; font-weight: 700; font-size: 1.1rem; color: var(--navy); }
+        .faq-answer { display: none; margin-top: 10px; color: var(--dark-gray); }
+        .faq-item.open .faq-answer { display: block; animation: fadeIn 0.5s; }
+        .faq-item.open .faq-question i { transform: rotate(90deg); }
+        .faq-question i { transition: transform 0.3s; margin-left: 10px; }
+        
+        /* --- Resources Section --- */
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .resource-card {
+            background: var(--white);
+            border: 1px solid var(--light-gray);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .resource-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(13,27,42,0.1); }
+        .resource-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.5rem;
+        }
+        .resource-card h3 { margin-bottom: 15px; }
+        .resource-card p { margin-bottom: 20px; color: var(--mid-gray); }
+        .resource-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.3s;
+        }
+        .resource-link:hover { color: var(--accent-dark); }
+        
+        /* --- Contact Section --- */
+        .contact-form { max-width: 700px; margin: 40px auto 0; display: grid; grid-template-columns: 1fr; gap: 20px; }
+        .form-group { display: flex; flex-direction: column; }
+        .contact-form label { margin-bottom: 5px; font-weight: 700; color: var(--navy); }
+        .contact-form input, .contact-form textarea {
+            padding: 12px;
+            border: 1px solid var(--light-gray);
+            border-radius: 5px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+        }
+        .contact-form input:focus, .contact-form textarea:focus { outline: 2px solid var(--accent); }
+        .contact-form button { justify-self: center; border: none; cursor: pointer; width: 170px; margin: 0 auto; display: block; }
+        .contact-form select { padding: 12px; border: 1px solid var(--light-gray); border-radius: 5px; font-family: var(--font-body); font-size: 1rem; }
+        .contact-form select:focus { outline: 2px solid var(--accent); }
+        
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        .contact-method {
+            text-align: center;
+            padding: 30px 20px;
+            border: 1px solid var(--light-gray);
+            border-radius: 12px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .contact-method:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(13,27,42,0.1); }
+        .method-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.5rem;
+        }
+        .contact-method h3 { margin-bottom: 15px; }
+        .contact-method p { margin-bottom: 20px; color: var(--mid-gray); }
+        
+        .contact-divider {
+            text-align: center;
+            margin: 40px 0;
+            position: relative;
+        }
+        .contact-divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--light-gray);
+        }
+        .contact-divider span {
+            background: var(--white);
+            padding: 0 20px;
+            color: var(--mid-gray);
+            font-weight: 700;
+        }
+        
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        .info-item i {
+            font-size: 1.5rem;
+            color: var(--accent);
+        }
+        .info-item strong { display: block; margin-bottom: 5px; }
+        .info-item p { margin: 0; color: var(--mid-gray); }
+        
+        .contact-success { color: var(--accent); font-weight: 700; margin-top: 10px; text-align: center; display: none; }
+        /* --- Footer --- */
+        .footer {
+            background-color: var(--navy);
+            color: var(--light-gray);
+            text-align: center;
+            padding: 30px 20px;
+        }
+        .footer-links { margin-bottom: 10px; }
+        .footer-links a { color: var(--light-gray); margin: 0 10px; text-decoration: none; font-weight: 700; transition: color 0.3s; }
+        .footer-links a:hover { color: var(--accent); }
+        .footer-socials { margin-top: 10px; }
+        .footer-socials a { color: var(--light-gray); margin: 0 8px; font-size: 1.3rem; transition: color 0.3s; }
+        .footer-socials a:hover { color: var(--accent); }
+        /* --- Responsive Design --- */
+        @media (max-width: 900px) {
+            .header { flex-direction: column; gap: 15px; }
+            .about-content { flex-direction: column; text-align: center; justify-content: center; align-items: center; }
+            .about-photo { margin-bottom: 18px; width: 120px; height: 120px; }
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.2rem; }
+            .services-grid, .pricing-grid, .resources-grid, .stats-grid, .contact-methods, .contact-info { grid-template-columns: 1fr; gap: 24px; }
+            .hero-btns { flex-direction: column; align-items: center; gap: 12px; }
+            .about-btns { flex-direction: column; align-items: center; gap: 12px; }
+            .process-step { flex-direction: column; text-align: center; }
+            .process-step::after { display: none; }
+            .step-number { margin: 0 auto 20px; }
+            #home { padding: 100px 10px 100px 10px; }
+            #home h1 { font-size: 2rem; }
+            #home p, .about-text p { font-size: 1rem; }
+            .footer-links, .footer-socials { flex-direction: column; align-items: center; gap: 8px; }
+        }
+        
+        @media (max-width: 600px) {
+            .container { padding: 24px 5px; }
+            .header { padding: 10px 5px; }
+            h1 { font-size: 1.2rem; }
+            h2 { font-size: 1rem; }
+            .about-photo { width: 90px; height: 90px; }
+            .cta-button, .secondary-btn, .contact-form button { padding: 10px 10px; font-size: 1rem; width: 100%; }
+            .form-group { margin-bottom: 10px; }
+            .footer-links, .footer-socials { flex-direction: column; align-items: center; gap: 6px; }
+        }
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 70px; /* Reduced offset for sticky header */
+        }
+        section, .section {
+            scroll-margin-top: 70px;
+        }
+        .contact-intro {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="#home" class="logo">AskOsc</a>
+        <nav>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#resources">Resources</a></li>
+                <li><a href="#faqs">FAQs</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions">
+            <a href="#contact" class="cta-header">Get Started</a>
+            <div class="hamburger" id="hamburger" onclick="toggleNav()">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section id="home">
+            <div class="hero-content">
+                <h1>Seamless Closings. Happy Clients. Less Stress.</h1>
+                <div class="hero-sub">From contract to close, I handle the details so you can focus on your clients.</div>
+                <div class="hero-btns">
+                    <a href="#contact" class="cta-button">Get Started</a>
+                    <a href="#services" class="secondary-btn">See Services</a>
+                </div>
+            </div>
+        </section>
+        <section id="about" class="container">
+            <div class="about-content">
+                <div class="about-photo">
+                    <img src="Headshot.jpg" alt="Oscar Brimelow headshot" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+                </div>
+                <div class="about-text">
+                    <h2>Meet Oscar Brimelow</h2>
+                    <p>I’m the founder of AskOsc, your calm and competent partner in real estate transaction management. My goal is to streamline every deal, providing seamless support from contract to close. With a sharp eye for detail and a commitment to clear communication, I ensure nothing gets overlooked.</p>
+                    <p>I have successfully coordinated approximately <strong>50 residential real estate transactions</strong>, giving me the hands-on experience needed to navigate the complexities of the process. My services are exclusively focused on residential properties, as this specialization allows me to provide a higher level of expertise.</p>
+                    <p>I operate with the utmost professionalism and integrity, ensuring every file is compliant and managed to the highest standard.</p>
+                    <div class="about-btns">
+                        <a href="#contact" class="cta-button">Contact Me</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="services" class="container">
+            <h2>What I Offer</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fa-solid fa-calendar-check"></i>
+                    <h3>Timeline & Deadline Management</h3>
+                    <p>I meticulously track all contract dates and deadlines, from inspections to closing, ensuring nothing is ever missed.</p>
+                    <a href="#contact" class="learn-btn cta-button">Learn More</a>
+                </div>
+                <div class="service-card">
+                    <i class="fa-solid fa-file-signature"></i>
+                    <h3>Document Coordination</h3>
+                    <p>I manage the collection of all necessary documents and disclosures, ensuring all parties have what they need for a complete file.</p>
+                    <a href="#contact" class="learn-btn cta-button">Learn More</a>
+                </div>
+                <div class="service-card">
+                    <i class="fa-solid fa-comments"></i>
+                    <h3>Communication Hub</h3>
+                    <p>I act as the central point of contact for the lender, title company, and other parties to keep everyone informed and on track.</p>
+                    <a href="#contact" class="learn-btn cta-button">Learn More</a>
+                </div>
+                <div class="service-card">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <h3>Compliance Assurance</h3>
+                    <p>I review transaction files for completeness and accuracy, ensuring your brokerage has a compliant and audit-ready file.</p>
+                    <a href="#contact" class="learn-btn cta-button">Learn More</a>
+                </div>
+                <div class="service-card">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <h3>Inspection Coordination</h3>
+                    <p>I schedule and coordinate all inspections, ensuring they're completed on time and results are properly communicated to all parties.</p>
+                    <a href="#contact" class="learn-btn cta-button">Learn More</a>
+                </div>
+                <div class="service-card">
+                    <i class="fa-solid fa-handshake"></i>
+                    <h3>Closing Preparation</h3>
+                    <p>I prepare all closing documents, coordinate with the title company, and ensure a smooth closing experience for everyone involved.</p>
+                    <a href="#contact" class="learn-btn cta-button">Learn More</a>
+                </div>
+            </div>
+            <div style="text-align:center; margin-top:40px;">
+                <a href="#pricing" class="secondary-btn">Compare Packages</a>
+            </div>
+        </section>
+
+        <section id="process" class="container">
+            <h2>How It Works</h2>
+            <div class="process-timeline">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Initial Consultation</h3>
+                        <p>We discuss your needs, review your current process, and determine how I can best support your transactions.</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Contract to Close</h3>
+                        <p>Once a deal goes under contract, I take over all administrative tasks, keeping you updated throughout the process.</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Seamless Closing</h3>
+                        <p>I ensure all documents are ready, deadlines are met, and the closing proceeds smoothly without any last-minute surprises.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="pricing" class="container">
+            <h2>Service Packages</h2>
+            <p style="text-align: center; margin-bottom: 30px; color: var(--mid-gray);">*If a transaction goes to mutual release, you only pay $50</p>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Starter</h3>
+                        <div class="price">$299<span>/transaction</span></div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fa-solid fa-check"></i> Basic document coordination</li>
+                        <li><i class="fa-solid fa-check"></i> Timeline tracking</li>
+                        <li><i class="fa-solid fa-check"></i> Email updates</li>
+                        <li><i class="fa-solid fa-check"></i> Closing coordination</li>
+                    </ul>
+                    <a href="#contact" class="cta-button">Get Started</a>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">Most Popular</div>
+                    <div class="pricing-header">
+                        <h3>Professional</h3>
+                        <div class="price">$399<span>/transaction</span></div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fa-solid fa-check"></i> Everything in Starter</li>
+                        <li><i class="fa-solid fa-check"></i> Priority communication</li>
+                        <li><i class="fa-solid fa-check"></i> Custom checklists</li>
+                        <li><i class="fa-solid fa-check"></i> Compliance review</li>
+                        <li><i class="fa-solid fa-check"></i> Email support</li>
+                    </ul>
+                    <a href="#contact" class="cta-button">Get Started</a>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Premium</h3>
+                        <div class="price">$499<span>/transaction</span></div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fa-solid fa-check"></i> Everything in Professional</li>
+                        <li><i class="fa-solid fa-check"></i> Dedicated coordinator</li>
+                        <li><i class="fa-solid fa-check"></i> Priority email support</li>
+                        <li><i class="fa-solid fa-check"></i> Custom reporting</li>
+                        <li><i class="fa-solid fa-check"></i> Brokerage integration</li>
+                    </ul>
+                    <a href="#contact" class="cta-button">Get Started</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="stats" class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" data-target="50">0</div>
+                    <div class="stat-label">Transactions Completed</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="100">0</div>
+                    <div class="stat-label">Happy Clients</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="16">0</div>
+                    <div class="stat-label">Hours Saved Per Deal</div>
+                </div>
+                                <div class="stat-item">
+                    <div class="stat-number success-rate" data-target="99">0</div>
+                    <div class="stat-label">Success Rate</div>
+                </div>
+            </div>
+        </section>
+        <section id="testimonials" class="container">
+            <h2>Client Reviews</h2>
+            <div class="testimonial-carousel" id="testimonialCarousel">
+                <div class="testimonial active">
+                    <div class="testimonial-photo"><i class="fa-solid fa-user"></i></div>
+                    <div class="testimonial-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div>
+                    <div class="testimonial-text">“Oscar’s attention to detail and communication made my transaction seamless. Highly recommend!”</div>
+                    <div class="testimonial-name">— Jane A., Realtor</div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-photo"><i class="fa-solid fa-user"></i></div>
+                    <div class="testimonial-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <div class="testimonial-text">“AskOsc took the stress out of my paperwork. I could focus on my clients and not the admin!”</div>
+                    <div class="testimonial-name">— Mike B., Agent</div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-photo"><i class="fa-solid fa-user"></i></div>
+                    <div class="testimonial-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <div class="testimonial-text">“Professional, prompt, and thorough. Oscar is my go-to for every deal.”</div>
+                    <div class="testimonial-name">— Sarah K., Broker</div>
+                </div>
+                <div class="carousel-controls">
+                    <button class="carousel-dot active" onclick="showTestimonial(0)"></button>
+                    <button class="carousel-dot" onclick="showTestimonial(1)"></button>
+                    <button class="carousel-dot" onclick="showTestimonial(2)"></button>
+                </div>
+            </div>
+        </section>
+        <section id="resources" class="container">
+            <h2>Resources & Insights</h2>
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <div class="resource-icon"><i class="fa-solid fa-file-lines"></i></div>
+                    <h3>Transaction Checklist</h3>
+                    <p>Download our comprehensive checklist to ensure nothing gets missed in your next transaction.</p>
+                    <a href="mailto:oscar@askosc.com?subject=Transaction Checklist Request" class="resource-link">Request PDF <i class="fa-solid fa-envelope"></i></a>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-icon"><i class="fa-solid fa-clock"></i></div>
+                    <h3>Timeline Guide</h3>
+                    <p>Learn the critical deadlines and milestones in a typical residential real estate transaction.</p>
+                    <a href="mailto:oscar@askosc.com?subject=Timeline Guide Request" class="resource-link">Request Guide <i class="fa-solid fa-envelope"></i></a>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-icon"><i class="fa-solid fa-lightbulb"></i></div>
+                    <h3>Pro Tips</h3>
+                    <p>Expert advice on streamlining your real estate business and improving client satisfaction.</p>
+                    <a href="mailto:oscar@askosc.com?subject=Pro Tips Request" class="resource-link">Request Tips <i class="fa-solid fa-envelope"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <section id="faqs" class="container">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">What is a Transaction Coordinator? <i class="fa-solid fa-chevron-right"></i></div>
+                    <div class="faq-answer">A Transaction Coordinator (TC) is a real estate professional who manages all the administrative tasks and paperwork involved in a transaction from the moment it goes under contract until it closes. We handle deadlines, documentation, and communication to ensure a smooth process.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">Why do I need one? <i class="fa-solid fa-chevron-right"></i></div>
+                    <div class="faq-answer">By delegating the administrative work to a TC, a real estate agent saves valuable time—up to 16 hours per transaction. This allows you to focus on high-value activities like lead generation, showing properties, and negotiating deals, ultimately helping you grow your business.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">What qualifications do you have? <i class="fa-solid fa-chevron-right"></i></div>
+                    <div class="faq-answer">My expertise comes from direct, hands-on experience coordinating 50+ residential real estate transactions and a deep understanding of the residential closing process. I operate with the highest level of professionalism and care, ensuring every transaction is handled with precision and attention to detail.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">Do you work with commercial or land deals? <i class="fa-solid fa-chevron-right"></i></div>
+                    <div class="faq-answer">No. To provide the most focused and expert service possible, I specialize exclusively in residential real estate transactions. I do not handle commercial or land-only deals.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">How quickly can you start? <i class="fa-solid fa-chevron-right"></i></div>
+                    <div class="faq-answer">I can typically begin working on a transaction within 24 hours of our initial consultation. For urgent situations, I can start immediately to ensure nothing falls through the cracks.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">What areas do you serve? <i class="fa-solid fa-chevron-right"></i></div>
+                    <div class="faq-answer">I primarily serve the Cleveland area and surrounding communities in Northeast Ohio. I can coordinate transactions throughout the region with expertise in local market conditions and requirements.</div>
+                </div>
+            </div>
+        </section>
+        <section id="contact" class="container">
+            <h2>Let's work together.</h2>
+            <p class="contact-intro">Ready to streamline your transactions? Get in touch via email or fill out the form below.</p>
+            
+            <div class="contact-methods">
+                <div class="contact-method">
+                    <div class="method-icon"><i class="fa-solid fa-envelope"></i></div>
+                    <h3>Send Email</h3>
+                    <p>Drop me a line with your questions or to request a custom quote.</p>
+                    <a href="mailto:oscar@askosc.com" class="cta-button">Email Me</a>
+                </div>
+            </div>
+
+            <div class="contact-divider">
+                <span>Or fill out the form below</span>
+            </div>
+
+            <form action="mailto:oscar@askosc.com" method="POST" enctype="text/plain" class="contact-form" onsubmit="return showSuccess(event)">
+                <div class="form-group">
+                    <label for="name">Name *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="brokerage">Brokerage Name</label>
+                    <input type="text" id="brokerage" name="brokerage">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+                <div class="form-group">
+                    <label for="service">Service Interest</label>
+                    <select id="service" name="service">
+                        <option value="">Select a service</option>
+                        <option value="starter">Starter Package</option>
+                        <option value="professional">Professional Package</option>
+                        <option value="premium">Premium Package</option>
+                        <option value="consultation">Just a consultation</option>
+                    </select>
+                </div>
+                <div class="form-group" style="grid-column: 1 / -1;">
+                    <label for="message">Message *</label>
+                    <textarea id="message" name="message" rows="5" required placeholder="Tell me about your transaction coordination needs..."></textarea>
+                </div>
+                <div class="form-group" style="grid-column: 1 / -1;">
+                    <button type="submit" class="cta-button">Send Message</button>
+                </div>
+            </form>
+            <div class="contact-success" id="contactSuccess">Thank you! Your message has been sent. I'll get back to you within one business day.</div>
+            
+            <div class="contact-info">
+                <div class="info-item">
+                    <i class="fa-solid fa-clock"></i>
+                    <div>
+                        <strong>Response Time</strong>
+                        <p>Within 1 business day</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fa-solid fa-map-marker-alt"></i>
+                    <div>
+                        <strong>Service Area</strong>
+                        <p>Primarily Cleveland Area</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fa-solid fa-shield-check"></i>
+                    <div>
+                        <strong>Confidentiality</strong>
+                        <p>100% secure & private</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="#home">Home</a>|
+            <a href="#about">About</a>|
+            <a href="#services">Services</a>|
+            <a href="#testimonials">Testimonials</a>|
+            <a href="#faqs">FAQs</a>|
+            <a href="#contact">Contact</a>
+        </div>
+        <div class="footer-socials">
+            <a href="mailto:oscar@askosc.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
+        </div>
+        <p style="margin-top:10px;">&copy; 2025 AskOsc.com. All Rights Reserved. | Transaction Coordination for Ohio Real Estate Agents</p>
+    </footer>
+    <script>
+        // Hamburger menu
+        function toggleNav() {
+            var nav = document.getElementById('navLinks');
+            nav.classList.toggle('open');
+        }
+        
+        // Testimonial carousel
+        var testimonials = document.querySelectorAll('.testimonial');
+        var dots = document.querySelectorAll('.carousel-dot');
+        function showTestimonial(idx) {
+            testimonials.forEach((t, i) => {
+                t.classList.toggle('active', i === idx);
+                dots[i].classList.toggle('active', i === idx);
+            });
+        }
+        
+        // Auto-rotate testimonials
+        var currentTestimonial = 0;
+        setInterval(() => {
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+            showTestimonial(currentTestimonial);
+        }, 5000);
+        
+        // FAQ toggle
+        function toggleFAQ(el) {
+            var item = el.parentElement;
+            item.classList.toggle('open');
+        }
+        
+        // Contact form success
+        function showSuccess(e) {
+            e.preventDefault();
+            document.getElementById('contactSuccess').style.display = 'block';
+            setTimeout(() => { document.getElementById('contactSuccess').style.display = 'none'; }, 4000);
+            e.target.reset();
+            return false;
+        }
+        
+        // Animated statistics
+        function animateStats() {
+            const stats = document.querySelectorAll('.stat-number');
+            stats.forEach(stat => {
+                const target = parseInt(stat.getAttribute('data-target'));
+                const duration = 2000; // 2 seconds
+                const increment = target / (duration / 16); // 60fps
+                let current = 0;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    stat.textContent = Math.floor(current);
+                }, 16);
+            });
+        }
+        
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    if (entry.target.id === 'stats') {
+                        animateStats();
+                    }
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe elements for animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const animateElements = document.querySelectorAll('.service-card, .pricing-card, .resource-card, .contact-method');
+            animateElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+            
+            // Observe stats section
+            const statsSection = document.getElementById('stats');
+            if (statsSection) {
+                observer.observe(statsSection);
+            }
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Form validation enhancement
+        document.querySelectorAll('.contact-form input, .contact-form textarea, .contact-form select').forEach(field => {
+            field.addEventListener('blur', function() {
+                if (this.hasAttribute('required') && !this.value.trim()) {
+                    this.style.borderColor = '#e74c3c';
+                } else {
+                    this.style.borderColor = '';
+                }
+            });
+        });
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AskOsc | Transaction Coordination Made Simple</title>
+    <meta name="description" content="AskOsc provides expert, detail-oriented residential real estate transaction coordination services in Ohio. Let Oscar Brimelow manage your transactions from contract to close.">
+    <meta name="keywords" content="transaction coordinator ohio, real estate tc, residential real estate, oscar brimelow, askosc">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">

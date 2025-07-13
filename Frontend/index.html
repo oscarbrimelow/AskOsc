@@ -22,11 +22,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         :root {
-            --navy: #101624;
-            --dark-gray: #232b3a;
-            --mid-gray: #aeb8c9;
-            --light-gray: #2e3a4d;
-            --white: #f5f6fa;
+            --navy: #181c24;
+            --navy-light: #232b3a;
+            --card-bg: #202736;
+            --border: rgba(255,255,255,0.07);
+            --white: #fff;
+            --offwhite: #eaeaea;
+            --text-main: #fff;
+            --text-secondary: #b0b8c1;
             --accent: #e6a100;
             --accent-dark: #b97a00;
             --font-header: 'Inter', sans-serif;
@@ -35,21 +38,19 @@
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
         body {
             font-family: var(--font-body);
-            background-color: var(--navy);
-            color: #f5f6fa;
+            background: var(--navy-light);
+            color: var(--text-main);
             line-height: 1.7;
         }
         .container {
             max-width: 1100px;
             margin: 0 auto;
             padding: 60px 20px;
-            background: var(--dark-gray);
-            border-radius: 18px;
-            box-shadow: 0 2px 16px rgba(0,0,0,0.10);
+            background: transparent;
         }
         h1, h2, h3 {
             font-family: var(--font-header);
-            color: #f5f6fa;
+            color: var(--white);
             margin-bottom: 20px;
             font-weight: 700;
             letter-spacing: -1px;
@@ -57,9 +58,12 @@
         h1 { font-size: 3rem; }
         h2 { font-size: 2.2rem; text-align: center; }
         p, li, label, .stat-label, .testimonial-text, .faq-answer, .contact-form input, .contact-form textarea, .contact-form select {
-            color: #f5f6fa !important;
+            color: var(--text-main) !important;
         }
-        section { border-bottom: 1px solid var(--light-gray); background: var(--dark-gray); }
+        section {
+            border-bottom: 1px solid var(--border);
+            background: transparent;
+        }
         /* --- Header & Navigation --- */
         .header {
             background-color: var(--navy);
@@ -81,7 +85,7 @@
             font-family: var(--font-header);
             font-size: 1.8rem;
             font-weight: 700;
-            color: #f5f6fa;
+            color: var(--white);
             text-decoration: none;
         }
         .nav-links {
@@ -91,7 +95,7 @@
         }
         .nav-links a {
             text-decoration: none;
-            color: #f5f6fa;
+            color: var(--white);
             font-weight: 700;
             font-size: 1rem;
             transition: color 0.3s;
@@ -170,7 +174,7 @@
         /* --- Hero Section --- */
         #home {
             background: linear-gradient(rgba(13, 27, 42, 0.7), rgba(13, 27, 42, 0.7)), url('dj-johnson-1kx8e7t66mQ-unsplash (1).jpg') no-repeat center center/cover;
-            color: #f5f6fa;
+            color: var(--white);
             text-align: center;
             padding: 200px 20px 200px 20px;
             position: relative;
@@ -187,7 +191,7 @@
             pointer-events: none;
         }
         #home .hero-content { position: relative; z-index: 2; }
-        #home h1 { color: #f5f6fa; font-size: 3.2rem; }
+        #home h1 { color: var(--white); font-size: 3.2rem; }
         #home .hero-sub { font-size: 1.3rem; margin-bottom: 18px; color: var(--accent); }
         #home p { font-size: 1.2rem; max-width: 600px; margin: 0 auto 30px; }
         .hero-btns { 
@@ -212,8 +216,8 @@
             display: inline-block;
             text-align: center;
         }
-        .cta-button:hover, .secondary-btn:hover { background: var(--accent-dark); color: #f5f6fa; transform: translateY(-2px); }
-        .secondary-btn { background: var(--navy); color: #f5f6fa; border: 1px solid var(--accent); }
+        .cta-button:hover, .secondary-btn:hover { background: var(--accent-dark); color: var(--white); transform: translateY(-2px); }
+        .secondary-btn { background: var(--navy); color: var(--white); border: 1.5px solid var(--accent); }
         .secondary-btn:hover { background: var(--accent-dark); color: var(--navy); }
         /* --- About Section --- */
         .about-content {
@@ -394,7 +398,7 @@
         .testimonial-photo {
             width: 70px; height: 70px; border-radius: 50%; background: var(--navy); display: flex; align-items: center; justify-content: center; margin-bottom: 12px; overflow: hidden;
         }
-        .testimonial-photo i { font-size: 2rem; color: #f5f6fa; }
+        .testimonial-photo i { font-size: 2rem; color: var(--white); }
         .testimonial-stars { color: #f1c40f; margin-bottom: 8px; }
         .testimonial-text { font-style: italic; color: var(--mid-gray); margin-bottom: 8px; }
         .testimonial-name { font-weight: 700; color: var(--navy); }
@@ -544,16 +548,16 @@
         .contact-success { color: var(--accent); font-weight: 700; margin-top: 10px; text-align: center; display: none; }
         /* --- Footer --- */
         .footer {
-            background-color: #181e2a;
-            color: #f5f6fa;
+            background-color: var(--navy);
+            color: var(--text-secondary);
             text-align: center;
             padding: 30px 20px;
         }
         .footer-links { margin-bottom: 10px; }
-        .footer-links a { color: #f5f6fa; margin: 0 10px; text-decoration: none; font-weight: 700; transition: color 0.3s; }
+        .footer-links a { color: var(--text-secondary); margin: 0 10px; text-decoration: none; font-weight: 700; transition: color 0.3s; }
         .footer-links a:hover { color: var(--accent); }
         .footer-socials { margin-top: 10px; }
-        .footer-socials a { color: #f5f6fa; margin: 0 8px; font-size: 1.3rem; transition: color 0.3s; }
+        .footer-socials a { color: var(--text-secondary); margin: 0 8px; font-size: 1.3rem; transition: color 0.3s; }
         .footer-socials a:hover { color: var(--accent); }
         /* --- Responsive Design --- */
         @media (max-width: 900px) {
@@ -587,7 +591,7 @@
         html {
             scroll-behavior: smooth;
             scroll-padding-top: 70px; /* Reduced offset for sticky header */
-            background: var(--navy);
+            background: var(--navy-light);
         }
         section, .section {
             scroll-margin-top: 70px;
@@ -625,7 +629,7 @@
         <section id="home">
             <div class="hero-split" style="display: flex; align-items: center; justify-content: center; min-height: 60vh; gap: 32px; flex-wrap: wrap; position: relative; z-index: 2;">
                 <div class="hero-left" style="flex: 1 1 420px; min-width: 280px; max-width: 540px; display: flex; flex-direction: column; align-items: flex-end; justify-content: center; text-align: right;">
-                    <h1 style="font-size: 2.7rem; color: #f5f6fa; font-family: var(--font-header); font-weight: 800; margin-bottom: 18px; line-height: 1.1;">
+                    <h1 style="font-size: 2.7rem; color: var(--white); font-family: var(--font-header); font-weight: 800; margin-bottom: 18px; line-height: 1.1;">
                         Seamless Closings.<br>
                         Happy Clients.<br>
                         Less Stress.
@@ -637,8 +641,8 @@
                     </div>
                 </div>
                 <div class="hero-right" style="flex: 0 0 220px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-                    <img src="Headshot.jpg" alt="Oscar Brimelow business headshot" style="width: 160px; height: 160px; border-radius: 50%; object-fit: cover; box-shadow: 0 6px 32px rgba(13,27,42,0.18); margin-bottom: 14px; border: 4px solid #f5f6fa;">
-                    <div style="font-family: var(--font-header); font-weight: 700; color: #f5f6fa; font-size: 1.2rem; letter-spacing: -0.5px; text-shadow: 0 2px 8px rgba(13,27,42,0.18);">Oscar Brimelow</div>
+                    <img src="Headshot.jpg" alt="Oscar Brimelow business headshot" style="width: 160px; height: 160px; border-radius: 50%; object-fit: cover; box-shadow: 0 6px 32px rgba(13,27,42,0.18); margin-bottom: 14px; border: 4px solid var(--white);">
+                    <div style="font-family: var(--font-header); font-weight: 700; color: var(--white); font-size: 1.2rem; letter-spacing: -0.5px; text-shadow: 0 2px 8px rgba(13,27,42,0.18);">Oscar Brimelow</div>
                     <div style="color: var(--accent); font-size: 1.02rem; margin-top: 2px; font-weight: 500;">Cleveland Transaction Coordinator</div>
                 </div>
             </div>

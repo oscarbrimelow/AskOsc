@@ -17,8 +17,8 @@
             --mid-gray: #778da9;
             --light-gray: #e0e1dd;
             --white: #ffffff;
-            --accent: #ffb300; /* bright gold */
-            --accent-dark: #ff8c00; /* deep orange */
+            --accent: #e6a100; /* muted amber */
+            --accent-dark: #b97a00; /* deeper amber */
             --font-header: 'Inter', sans-serif;
             --font-body: 'Lato', sans-serif;
         }
@@ -98,7 +98,6 @@
         /* --- Hero Section --- */
         #home {
             background: linear-gradient(rgba(13, 27, 42, 0.7), rgba(13, 27, 42, 0.7)), url('dj-johnson-1kx8e7t66mQ-unsplash (1).jpg') no-repeat center center/cover;
-            background-attachment: fixed;
             color: var(--white);
             text-align: center;
             padding: 200px 20px 200px 20px;
@@ -112,7 +111,7 @@
             top: 0; left: 0; right: 0; bottom: 0;
             z-index: 1;
             background: inherit;
-            filter: blur(8px) brightness(0.7);
+            filter: blur(3px) brightness(0.7);
             pointer-events: none;
         }
         #home .hero-content { position: relative; z-index: 2; }
@@ -145,14 +144,21 @@
         .secondary-btn { background: var(--navy); color: var(--white); }
         .secondary-btn:hover { background: var(--accent-dark); color: var(--navy); }
         /* --- About Section --- */
-        .about-content { 
-            display: flex; 
-            align-items: center; 
-            gap: 50px; 
+        .about-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 50px;
             flex-wrap: wrap;
+            text-align: center;
+        }
+        .about-text {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             justify-content: center;
         }
-        .about-text { flex: 1; }
         .about-photo {
             width: 180px; height: 180px; border-radius: 50%; background: var(--mid-gray); display: flex; align-items: center; justify-content: center; overflow: hidden; box-shadow: 0 4px 16px rgba(13,27,42,0.08); flex-shrink: 0;
         }
@@ -475,7 +481,7 @@
         /* --- Responsive Design --- */
         @media (max-width: 900px) {
             .header { flex-direction: column; gap: 15px; }
-            .about-content { flex-direction: column; text-align: center; justify-content: center; }
+            .about-content { flex-direction: column; text-align: center; justify-content: center; align-items: center; }
             h1 { font-size: 2.2rem; }
             h2 { font-size: 1.5rem; }
             .about-photo { margin-bottom: 18px; }

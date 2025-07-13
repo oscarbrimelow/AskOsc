@@ -616,18 +616,33 @@
     </header>
     <main>
         <section id="home">
-            <div class="hero-content">
-                <div class="hero-personal" style="display: flex; flex-direction: column; align-items: center; margin-bottom: 18px;">
-                    <img src="Headshot.jpg" alt="Oscar Brimelow business headshot" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; box-shadow: 0 2px 8px rgba(13,27,42,0.10); margin-bottom: 8px;">
-                    <div style="font-family: var(--font-header); font-weight: 600; color: var(--white); font-size: 1.1rem; letter-spacing: -0.5px;">Oscar Brimelow</div>
+            <div class="hero-split" style="display: flex; align-items: center; justify-content: center; min-height: 60vh; gap: 40px; flex-wrap: wrap; position: relative; z-index: 2;">
+                <div class="hero-left" style="flex: 1 1 340px; min-width: 280px; max-width: 500px; display: flex; flex-direction: column; align-items: flex-start;">
+                    <h1 style="font-size: 2.7rem; color: var(--white); font-family: var(--font-header); font-weight: 800; margin-bottom: 18px; line-height: 1.1;">Seamless Closings. Happy Clients. Less Stress.</h1>
+                    <div class="hero-sub" style="font-size: 1.2rem; color: var(--accent); margin-bottom: 28px;">From contract to close, I handle the details so you can focus on your clients.</div>
+                    <div class="hero-btns" style="display: flex; gap: 14px;">
+                        <a href="#contact" class="cta-button">Get Started</a>
+                        <a href="#services" class="secondary-btn">See Services</a>
+                    </div>
                 </div>
-                <h1>Seamless Closings. Happy Clients. Less Stress.</h1>
-                <div class="hero-sub">From contract to close, I handle the details so you can focus on your clients.</div>
-                <div class="hero-btns">
-                    <a href="#contact" class="cta-button">Get Started</a>
-                    <a href="#services" class="secondary-btn">See Services</a>
+                <div class="hero-right" style="flex: 0 0 260px; display: flex; flex-direction: column; align-items: center;">
+                    <img src="Headshot.jpg" alt="Oscar Brimelow business headshot" style="width: 180px; height: 180px; border-radius: 50%; object-fit: cover; box-shadow: 0 6px 32px rgba(13,27,42,0.18); margin-bottom: 18px; border: 4px solid var(--white);">
+                    <div style="font-family: var(--font-header); font-weight: 700; color: var(--white); font-size: 1.3rem; letter-spacing: -0.5px; text-shadow: 0 2px 8px rgba(13,27,42,0.18);">Oscar Brimelow</div>
+                    <div style="color: var(--accent); font-size: 1.05rem; margin-top: 4px; font-weight: 500;">Cleveland Transaction Coordinator</div>
                 </div>
             </div>
+            <style>
+            @media (max-width: 900px) {
+                .hero-split { flex-direction: column; gap: 24px; align-items: center; }
+                .hero-left, .hero-right { align-items: center !important; text-align: center; }
+                .hero-left { align-items: center !important; }
+            }
+            @media (max-width: 600px) {
+                .hero-split { gap: 12px; }
+                .hero-left h1 { font-size: 1.3rem !important; }
+                .hero-right img { width: 110px !important; height: 110px !important; }
+            }
+            </style>
         </section>
         <section id="about" class="container">
             <div class="about-content">

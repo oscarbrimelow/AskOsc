@@ -122,10 +122,13 @@
                 align-items: center;
                 padding: 8px 10px;
                 min-height: 56px;
+                height: 64px;
             }
             .logo {
-                flex: 1 1 auto;
+                flex: 0 0 auto;
                 justify-content: flex-start;
+                align-items: center;
+                display: flex;
             }
             .header-actions {
                 flex: 0 0 auto;
@@ -136,11 +139,16 @@
             .cta-header {
                 padding: 8px 14px;
                 font-size: 1rem;
+                height: 44px;
+                display: flex;
+                align-items: center;
             }
             .hamburger {
                 display: flex;
                 margin-left: 8px;
                 z-index: 1201;
+                height: 44px;
+                align-items: center;
             }
             .nav-links {
                 display: none;
@@ -180,10 +188,12 @@
         @media (max-width: 600px) {
             .header {
                 padding: 4px 4px;
-                min-height: 44px;
+                min-height: 52px;
+                height: 56px;
             }
             .logo img { height: 38px !important; }
-            .cta-header { padding: 6px 8px; font-size: 0.98rem; }
+            .cta-header { padding: 6px 8px; font-size: 0.98rem; height: 38px; }
+            .hamburger { height: 38px; }
             .hero-split { flex-direction: column !important; gap: 12px !important; align-items: center !important; }
             .hero-left, .hero-right { align-items: center !important; text-align: center !important; justify-content: center !important; }
             .hero-left h1 { font-size: 1.3rem !important; }
@@ -200,6 +210,9 @@
                 font-size: 1.08rem !important;
                 min-height: 48px;
             }
+            /* Move hero right (headshot/name/title) above hero left (heading) on mobile */
+            .hero-split { flex-direction: column-reverse !important; }
+            .hero-right { order: -1 !important; margin-bottom: 12px !important; }
         }
         /* --- Hero Section --- */
         #home {

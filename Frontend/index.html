@@ -703,13 +703,9 @@
     </style>
 </head>
 <body>
-    <header class="header" style="display: flex; align-items: center; justify-content: space-between;">
-        <div class="header-left" style="display: flex; align-items: center; flex: 1 1 auto;">
-            <a href="#home" class="logo" style="display: flex; align-items: center; gap: 10px;">
-                <img src="AskOscLogo.png" alt="AskOsc Logo" style="height: 64px; width: auto; display: block;">
-            </a>
-        </div>
-        <div class="header-actions" style="display: flex; align-items: center; gap: 8px; flex: 0 0 auto;">
+    <header class="header">
+        <a href="#home" class="logo" style="display: flex; align-items: center; height: 100%;"><img src="AskOscLogo.png" alt="AskOsc Logo" style="height: 44px; width: auto; display: block;"></a>
+        <div class="header-actions" style="display: flex; align-items: center; gap: 8px;">
             <a href="#contact" class="cta-header">Get Started</a>
             <div class="hamburger" id="hamburger" onclick="toggleNav()">
                 <div class="bar"></div>
@@ -718,6 +714,70 @@
             </div>
         </div>
     </header>
+    <style>
+    .header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        background: var(--navy);
+        padding: 0 12px;
+        min-height: 56px;
+        height: 56px;
+        width: 100%;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+    .logo {
+        flex: 0 0 auto;
+        display: flex;
+        align-items: center;
+        height: 100%;
+    }
+    .header-actions {
+        flex: 0 0 auto;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        height: 100%;
+    }
+    .cta-header {
+        padding: 8px 16px;
+        font-size: 1rem;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        border-radius: 8px;
+    }
+    .hamburger {
+        display: flex;
+        align-items: center;
+        height: 40px;
+        margin-left: 8px;
+        cursor: pointer;
+    }
+    @media (max-width: 900px) {
+        .header {
+            min-height: 52px;
+            height: 52px;
+            padding: 0 8px;
+        }
+        .logo img { height: 36px !important; }
+        .cta-header { height: 36px; font-size: 0.98rem; padding: 6px 10px; }
+        .hamburger { height: 36px; }
+    }
+    @media (max-width: 600px) {
+        .header {
+            min-height: 48px;
+            height: 48px;
+            padding: 0 4px;
+        }
+        .logo img { height: 30px !important; }
+        .cta-header { height: 30px; font-size: 0.96rem; padding: 4px 8px; }
+        .hamburger { height: 30px; }
+    }
+    </style>
     <main>
         <section id="home">
             <div class="hero-split" style="display: flex; align-items: center; justify-content: center; min-height: 60vh; gap: 32px; flex-wrap: wrap; position: relative; z-index: 2;">

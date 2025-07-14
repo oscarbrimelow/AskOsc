@@ -917,9 +917,12 @@
                 </div>
                 <div class="about-text">
                     <h2>Meet Oscar Brimelow</h2>
-                    <p>I’m the founder of AskOsc, your calm and competent partner in real estate transaction management. My goal is to streamline every deal, providing seamless support from contract to close. With a sharp eye for detail and a commitment to clear communication, I ensure nothing gets overlooked.</p>
-                    <p>I have successfully coordinated approximately <strong>50 residential real estate transactions</strong>, giving me the hands-on experience needed to navigate the complexities of the process. My services are exclusively focused on residential properties, as this specialization allows me to provide a higher level of expertise.</p>
-                    <p>I operate with the utmost professionalism and integrity, ensuring every file is compliant and managed to the highest standard.</p>
+                    <p style="font-size:1.08rem; color:var(--text-secondary); margin-bottom:10px;">Founder of AskOsc and your dedicated transaction coordinator.</p>
+                    <ul style="font-size:1.01rem; color:var(--text-main); margin-bottom:10px; line-height:1.6; padding-left:18px;">
+                        <li>50+ residential transactions managed with precision</li>
+                        <li>Specialized in residential real estate</li>
+                        <li>Detail-focused, clear communicator, seamless closings</li>
+                    </ul>
                     <div class="about-btns">
                         <a href="#contact" class="cta-button">Contact Me</a>
                     </div>
@@ -956,7 +959,7 @@
                 <div class="service-card">
                     <i class="fa-solid fa-magnifying-glass"></i>
                     <h3>Inspection Coordination</h3>
-                    <p>I schedule and coordinate all inspections, ensuring they're completed on time and results are properly communicated to all parties.</p>
+                    <p>I coordinate all inspections, ensuring they're completed on time and results are properly communicated to all parties.</p>
                     <a href="#contact" class="learn-btn cta-button">Learn More</a>
                 </div>
                 <div class="service-card">
@@ -1261,6 +1264,20 @@
                 document.body.style.overflow = '';
             }
         }
+        // --- Close mobile nav on link click ---
+        document.addEventListener('DOMContentLoaded', function() {
+            var nav = document.getElementById('navLinks');
+            if (nav) {
+                nav.querySelectorAll('a').forEach(function(link) {
+                    link.addEventListener('click', function() {
+                        if (nav.classList.contains('open')) {
+                            nav.classList.remove('open');
+                            document.body.style.overflow = '';
+                        }
+                    });
+                });
+            }
+        });
         
         // Testimonial carousel
         var testimonials = document.querySelectorAll('.testimonial');

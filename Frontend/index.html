@@ -183,7 +183,7 @@
                 font-size: 1.2rem;
                 width: 100%;
                 display: block;
-            }
+        }
         }
         @media (max-width: 600px) {
             .header {
@@ -294,10 +294,10 @@
         }
         .about-btns { margin-top: 18px; display: flex; gap: 16px; }
         /* --- Services Section --- */
-        .services-grid { 
-            display: grid; 
+        .services-grid {
+            display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-            gap: 30px; 
+            gap: 30px;
             margin-top: 40px;
             align-items: start;
         }
@@ -459,7 +459,7 @@
         .faq-item.open .faq-answer { display: block; animation: fadeIn 0.5s; }
         .faq-item.open .faq-question i { transform: rotate(90deg); }
         .faq-question i { transition: transform 0.3s; margin-left: 10px; }
-        
+
         /* --- Resources Section --- */
         .resources-grid {
             display: grid;
@@ -640,8 +640,8 @@
             scroll-margin-top: 70px;
         }
         .contact-intro {
-            text-align: center;
-        }
+                text-align: center;
+            }
         /* Card/Section backgrounds */
         .service-card, .pricing-card, .resource-card, .contact-method, .info-item, #testimonials, #faqs, #resources, #pricing, #about, #services, #contact, .faq-item {
             background: var(--card-bg) !important;
@@ -703,23 +703,13 @@
     </style>
 </head>
 <body>
-    <header class="header">
-        <a href="#home" class="logo" style="display: flex; align-items: center; gap: 10px;">
-            <img src="AskOscLogo.png" alt="AskOsc Logo" style="height: 64px; width: auto; display: block;">
-        </a>
-        <nav>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#pricing">Pricing</a></li>
-                <li><a href="#testimonials">Testimonials</a></li>
-                <li><a href="#resources">Resources</a></li>
-                <li><a href="#faqs">FAQs</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-        <div class="header-actions">
+    <header class="header" style="display: flex; align-items: center; justify-content: space-between;">
+        <div class="header-left" style="display: flex; align-items: center; flex: 1 1 auto;">
+            <a href="#home" class="logo" style="display: flex; align-items: center; gap: 10px;">
+                <img src="AskOscLogo.png" alt="AskOsc Logo" style="height: 64px; width: auto; display: block;">
+            </a>
+        </div>
+        <div class="header-actions" style="display: flex; align-items: center; gap: 8px; flex: 0 0 auto;">
             <a href="#contact" class="cta-header">Get Started</a>
             <div class="hamburger" id="hamburger" onclick="toggleNav()">
                 <div class="bar"></div>
@@ -987,19 +977,19 @@
                     <div class="faq-question" onclick="toggleFAQ(this)">Why do I need one? <i class="fa-solid fa-chevron-right"></i></div>
                     <div class="faq-answer">By delegating the administrative work to a TC, a real estate agent saves valuable time—up to 16 hours per transaction. This allows you to focus on high-value activities like lead generation, showing properties, and negotiating deals, ultimately helping you grow your business.</div>
                 </div>
-                <div class="faq-item">
+            <div class="faq-item">
                     <div class="faq-question" onclick="toggleFAQ(this)">What qualifications do you have? <i class="fa-solid fa-chevron-right"></i></div>
                     <div class="faq-answer">My expertise comes from direct, hands-on experience coordinating 50+ residential real estate transactions and a deep understanding of the residential closing process. I operate with the highest level of professionalism and care, ensuring every transaction is handled with precision and attention to detail.</div>
-                </div>
-                <div class="faq-item">
+            </div>
+            <div class="faq-item">
                     <div class="faq-question" onclick="toggleFAQ(this)">Do you work with commercial or land deals? <i class="fa-solid fa-chevron-right"></i></div>
                     <div class="faq-answer">No. To provide the most focused and expert service possible, I specialize exclusively in residential real estate transactions. I do not handle commercial or land-only deals.</div>
-                </div>
-                <div class="faq-item">
+            </div>
+            <div class="faq-item">
                     <div class="faq-question" onclick="toggleFAQ(this)">How quickly can you start? <i class="fa-solid fa-chevron-right"></i></div>
                     <div class="faq-answer">I can typically begin working on a transaction within 24 hours of our initial consultation. For urgent situations, I can start immediately to ensure nothing falls through the cracks.</div>
-                </div>
-                <div class="faq-item">
+            </div>
+            <div class="faq-item">
                     <div class="faq-question" onclick="toggleFAQ(this)">What areas do you serve? <i class="fa-solid fa-chevron-right"></i></div>
                     <div class="faq-answer">I primarily serve the Cleveland area and surrounding communities in Northeast Ohio. I can coordinate transactions throughout the region with expertise in local market conditions and requirements.</div>
                 </div>

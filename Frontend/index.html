@@ -303,11 +303,21 @@
         /* --- Services Section --- */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            grid-template-columns: repeat(3, 1fr);
             gap: 30px;
             margin-top: 40px;
             align-items: start;
-            justify-content: center;
+            justify-items: center;
+        }
+        @media (max-width: 1000px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 700px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
         }
         .service-card {
             background-color: #f8f9fa;
@@ -432,6 +442,11 @@
         .stat-number.success-rate::after {
             content: '%';
             font-size: 2rem;
+        }
+        .stat-plus {
+            font-size: 2rem;
+            color: var(--accent);
+            font-weight: 700;
         }
         .stat-label {
             font-size: 1.1rem;
@@ -1161,7 +1176,7 @@
         <section id="stats" class="container">
             <div class="stats-grid">
                 <div class="stat-item">
-                    <div class="stat-number" data-target="50">0</div><span style="font-size: 2rem; color: var(--accent);">+</span>
+                    <div class="stat-number" data-target="50">0</div><span class="stat-plus">+</span>
                     <div class="stat-label">Transactions Completed</div>
                 </div>
                 <div class="stat-item">

@@ -36,6 +36,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
         :root {
             --navy: #181c24;
@@ -51,6 +52,33 @@
             --font-header: 'Inter', sans-serif;
             --font-body: 'Lato', sans-serif;
         }
+        
+        /* New Animations */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .floating-img {
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 0 0 rgba(230, 161, 0, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(230, 161, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(230, 161, 0, 0); }
+        }
+        .pulse-btn {
+            animation: pulse-glow 2s infinite;
+        }
+
+        /* Typing Effect Cursor */
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 1s step-start infinite;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
+
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
         body {
             font-family: var(--font-body);
@@ -82,7 +110,9 @@
         }
         /* --- Header & Navigation --- */
         .header {
-            background-color: var(--navy);
+            background-color: rgba(24, 28, 36, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             padding: 20px 40px;
             display: flex;
             justify-content: space-between;
@@ -788,7 +818,9 @@
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
-        background: var(--navy);
+        background: rgba(24, 28, 36, 0.85);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
         padding: 0 12px;
         min-height: 72px;
         height: 72px;
@@ -905,24 +937,24 @@
     <main>
         <section id="home">
             <div class="hero-split" style="display: flex; align-items: center; justify-content: center; min-height: 60vh; gap: 32px; flex-wrap: wrap; position: relative; z-index: 2;">
-                <div class="hero-left" style="flex: 0 0 220px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-                    <img src="FINAL FINAL.png" alt="Oscar Brimelow business headshot" style="width: 160px; height: 160px; border-radius: 50%; object-fit: cover; box-shadow: 0 6px 32px rgba(13,27,42,0.18); margin-bottom: 14px; border: 4px solid var(--white);">
+                <div class="hero-left" data-aos="fade-right" style="flex: 0 0 220px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                    <img src="FINAL FINAL.png" class="floating-img" alt="Oscar Brimelow business headshot" style="width: 160px; height: 160px; border-radius: 50%; object-fit: cover; box-shadow: 0 6px 32px rgba(13,27,42,0.18); margin-bottom: 14px; border: 4px solid var(--white);">
                     <div style="font-family: var(--font-header); font-weight: 700; color: var(--white); font-size: 1.2rem; letter-spacing: -0.5px; text-shadow: 0 2px 8px rgba(13,27,42,0.18);">Oscar Brimelow</div>
                     <div style="color: var(--accent); font-size: 1.02rem; margin-top: 2px; font-weight: 500;">Cleveland Transaction Coordinator</div>
             </div>
-                <div class="hero-right" style="flex: 1 1 420px; min-width: 280px; max-width: 540px; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; text-align: left;">
+                <div class="hero-right" data-aos="fade-left" style="flex: 1 1 420px; min-width: 280px; max-width: 540px; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; text-align: left;">
                     <h1 style="font-size: 2.7rem; color: var(--white); font-family: var(--font-header); font-weight: 800; margin-bottom: 18px; line-height: 1.1;">
                         Seamless Closings.<br>
                         Happy Clients.<br>
                         Less Stress.
                     </h1>
-                    <div class="hero-sub" style="font-size: 1.2rem; color: var(--accent); margin: 18px 0 28px 0; max-width: 480px; text-align: left; font-weight: 500; align-self: flex-start;">
+                    <div class="hero-sub" style="font-size: 1.2rem; color: var(--accent); margin: 18px 0 28px 0; max-width: 480px; text-align: left; font-weight: 500; align-self: flex-start; min-height: 80px;">
                         From contract to close,<br>
                         I handle the details<br>
                         so you can focus on your clients.
                     </div>
                     <div class="hero-btns" style="display: flex; gap: 14px; justify-content: flex-start;">
-                        <a href="#contact" class="cta-button">Get Started</a>
+                        <a href="#contact" class="cta-button pulse-btn">Get Started</a>
                         <a href="#services" class="secondary-btn">See Services</a>
                     </div>
                 </div>
@@ -945,10 +977,10 @@
         </section>
         <section id="about" class="container">
             <div class="about-content">
-                <div class="about-photo">
+                <div class="about-photo" data-aos="zoom-in">
                     <img src="FINAL FINAL.png" alt="Oscar Brimelow headshot" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
                 </div>
-                <div class="about-text">
+                <div class="about-text" data-aos="fade-up">
                     <h2>Meet Oscar Brimelow</h2>
                     <p style="font-size:1.08rem; color:var(--text-secondary); margin-bottom:10px;">Founder of AskOsc and your dedicated transaction coordinator.</p>
                     <p style="font-size:1.01rem; color:var(--text-main); margin-bottom:2px; line-height:1.6;">50+ residential transactions managed with precision.</p>
@@ -963,31 +995,31 @@
         <section id="services" class="container">
             <h2>What I Offer</h2>
             <div class="services-grid">
-                <div class="service-card">
+                <div class="service-card" data-aos="fade-up">
                     <i class="fa-solid fa-calendar-check"></i>
                     <h3>Timeline & Deadline Management</h3>
                     <p>I meticulously track all contract dates and deadlines, from inspections to closing, ensuring nothing is ever missed.</p>
                     <a href="#contact" class="learn-btn cta-button">Learn More</a>
                 </div>
-                <div class="service-card">
+                <div class="service-card" data-aos="fade-up">
                     <i class="fa-solid fa-file-signature"></i>
                     <h3>Document Coordination</h3>
                     <p>I manage the collection of all necessary documents and disclosures, ensuring all parties have what they need for a complete file.</p>
                     <a href="#contact" class="learn-btn cta-button">Learn More</a>
                 </div>
-                <div class="service-card">
+                <div class="service-card" data-aos="fade-up">
                     <i class="fa-solid fa-comments"></i>
                     <h3>Communication Hub</h3>
                     <p>I act as the central point of contact for the lender, title company, and other parties to keep everyone informed and on track.</p>
                     <a href="#contact" class="learn-btn cta-button">Learn More</a>
                 </div>
-                <div class="service-card">
+                <div class="service-card" data-aos="fade-up">
                     <i class="fa-solid fa-shield-halved"></i>
                     <h3>Compliance Assurance</h3>
                     <p>I review transaction files for completeness and accuracy, ensuring your brokerage has a compliant and audit-ready file.</p>
                     <a href="#contact" class="learn-btn cta-button">Learn More</a>
                 </div>
-                <div class="service-card">
+                <div class="service-card" data-aos="fade-up">
                     <i class="fa-solid fa-magnifying-glass"></i>
                     <h3>Inspection Coordination</h3>
                     <p>I make sure it's completed on time, to ensure ROCs are issued according to contract.</p>
@@ -1002,21 +1034,21 @@
         <section id="process" class="container">
             <h2>How It Works</h2>
             <div class="process-timeline">
-                <div class="process-step">
+                <div class="process-step" data-aos="fade-right">
                     <div class="step-number">1</div>
                     <div class="step-content">
                         <h3>Initial Consultation</h3>
                         <p>We discuss your needs, review your current process, and determine how I can best support your transactions.</p>
                     </div>
                 </div>
-                <div class="process-step">
+                <div class="process-step" data-aos="fade-right">
                     <div class="step-number">2</div>
                     <div class="step-content">
                         <h3>Contract to Close</h3>
                         <p>Once a deal goes under contract, I take over all administrative tasks, keeping you updated throughout the process.</p>
                     </div>
                 </div>
-                <div class="process-step">
+                <div class="process-step" data-aos="fade-right">
                     <div class="step-number">3</div>
                     <div class="step-content">
                         <h3>Seamless Closing</h3>
@@ -1030,7 +1062,7 @@
             <h2>Simple, Transparent Pricing</h2>
             <p style="text-align: center; margin-bottom: 30px; color: var(--text-secondary);">*If a transaction goes to mutual release, you only pay $75</p>
             <div class="pricing-grid" style="justify-content: center; display: flex;">
-                <div class="pricing-card featured" style="max-width: 500px;">
+                <div class="pricing-card featured" data-aos="flip-left" style="max-width: 500px;">
                     <div class="pricing-badge">Standard Service</div>
                     <div class="pricing-header">
                         <h3>Complete Transaction Coordination</h3>
@@ -1180,15 +1212,15 @@
 
         <section id="stats" class="container">
             <div class="stats-grid">
-                <div class="stat-item">
+                <div class="stat-item" data-aos="zoom-in">
                     <div class="stat-number" data-target="50">0</div>
                     <div class="stat-label">Transactions Completed</div>
                 </div>
-                <div class="stat-item">
+                <div class="stat-item" data-aos="zoom-in">
                     <div class="stat-number" data-target="100">0</div>
                     <div class="stat-label">Happy Clients</div>
                 </div>
-                <div class="stat-item">
+                <div class="stat-item" data-aos="zoom-in">
                     <div class="stat-number" data-target="16">0</div>
                     <div class="stat-label">Hours Saved Per Deal</div>
                 </div>
@@ -1197,19 +1229,19 @@
         <section id="resources" class="container">
             <h2>Resources & Insights</h2>
             <div class="resources-grid">
-                <div class="resource-card">
+                <div class="resource-card" data-aos="fade-up">
                     <div class="resource-icon"><i class="fa-solid fa-file-lines"></i></div>
                     <h3>Transaction Checklist</h3>
                     <p>Download our comprehensive checklist to ensure nothing gets missed in your next transaction.</p>
                     <a href="mailto:oscar@askosc.com?subject=Transaction Checklist Request" class="resource-link">Request PDF <i class="fa-solid fa-envelope"></i></a>
                 </div>
-                <div class="resource-card">
+                <div class="resource-card" data-aos="fade-up">
                     <div class="resource-icon"><i class="fa-solid fa-clock"></i></div>
                     <h3>Timeline Guide</h3>
                     <p>Learn the critical deadlines and milestones in a typical residential real estate transaction.</p>
                     <a href="mailto:oscar@askosc.com?subject=Timeline Guide Request" class="resource-link">Request Guide <i class="fa-solid fa-envelope"></i></a>
                 </div>
-                <div class="resource-card">
+                <div class="resource-card" data-aos="fade-up">
                     <div class="resource-icon"><i class="fa-solid fa-lightbulb"></i></div>
                     <h3>Pro Tips</h3>
                     <p>Expert advice on streamlining your real estate business and improving client satisfaction.</p>
@@ -1221,27 +1253,27 @@
         <section id="faqs" class="container">
             <h2>Frequently Asked Questions</h2>
             <div class="faq-list">
-            <div class="faq-item">
+            <div class="faq-item" data-aos="fade-up">
                     <div class="faq-question" onclick="toggleFAQ(this)">What is a Transaction Coordinator? <i class="fa-solid fa-chevron-right"></i></div>
                     <div class="faq-answer">A Transaction Coordinator (TC) is a real estate professional who manages all the administrative tasks and paperwork involved in a transaction from the moment it goes under contract until it closes. We handle deadlines, documentation, and communication to ensure a smooth process.</div>
             </div>
-            <div class="faq-item">
+            <div class="faq-item" data-aos="fade-up">
                     <div class="faq-question" onclick="toggleFAQ(this)">Why do I need one? <i class="fa-solid fa-chevron-right"></i></div>
                     <div class="faq-answer">By delegating the administrative work to a TC, a real estate agent saves valuable time—up to 16 hours per transaction. This allows you to focus on high-value activities like lead generation, showing properties, and negotiating deals, ultimately helping you grow your business.</div>
             </div>
-            <div class="faq-item">
+            <div class="faq-item" data-aos="fade-up">
                     <div class="faq-question" onclick="toggleFAQ(this)">What qualifications do you have? <i class="fa-solid fa-chevron-right"></i></div>
                     <div class="faq-answer">My expertise comes from direct, hands-on experience coordinating 50+ residential real estate transactions and a deep understanding of the residential closing process. I operate with the highest level of professionalism and care, ensuring every transaction is handled with precision and attention to detail.</div>
             </div>
-            <div class="faq-item">
+            <div class="faq-item" data-aos="fade-up">
                     <div class="faq-question" onclick="toggleFAQ(this)">Do you work with commercial or land deals? <i class="fa-solid fa-chevron-right"></i></div>
                     <div class="faq-answer">No. To provide the most focused and expert service possible, I specialize exclusively in residential real estate transactions. I do not handle commercial or land-only deals.</div>
             </div>
-            <div class="faq-item">
+            <div class="faq-item" data-aos="fade-up">
                     <div class="faq-question" onclick="toggleFAQ(this)">How quickly can you start? <i class="fa-solid fa-chevron-right"></i></div>
                     <div class="faq-answer">I can typically begin working on a transaction within 24 hours of our initial consultation. For urgent situations, I can start immediately to ensure nothing falls through the cracks.</div>
             </div>
-            <div class="faq-item">
+            <div class="faq-item" data-aos="fade-up">
                     <div class="faq-question" onclick="toggleFAQ(this)">What areas do you serve? <i class="fa-solid fa-chevron-right"></i></div>
                     <div class="faq-answer">I primarily serve the Cleveland area and surrounding communities in Northeast Ohio. I can coordinate transactions throughout the region with expertise in local market conditions and requirements.</div>
                 </div>
@@ -1252,7 +1284,7 @@
             <p class="contact-intro">Ready to streamline your transactions? Get in touch via email or fill out the form below.</p>
             
             <div class="contact-methods">
-                <div class="contact-method">
+                <div class="contact-method" data-aos="fade-up">
                     <div class="method-icon"><i class="fa-solid fa-envelope"></i></div>
                     <h3>Send Email</h3>
                     <p>Drop me a line with your questions or to request a custom quote.</p>
@@ -1265,7 +1297,7 @@
             </div>
 
             <!-- Contact Form: Formspree integration -->
-            <form action="https://formspree.io/f/xblkrkjl" method="POST" class="contact-form">
+            <form action="https://formspree.io/f/xblkrkjl" method="POST" class="contact-form" data-aos="fade-up">
                 <div class="form-group">
                     <label for="name">Name *</label>
                     <input type="text" id="name" name="name" required>
@@ -1349,6 +1381,7 @@
         </div>
         <p style="margin-top:10px;">&copy; 2025 AskOsc. All rights reserved. | Cleveland Transaction Coordination</p>
     </footer>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         // Hamburger menu with slide-in overlay for mobile
         function toggleNav() {
@@ -1428,7 +1461,7 @@
             });
         }
         
-        // Intersection Observer for animations
+        // Intersection Observer for Stats Animation only
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -1439,29 +1472,50 @@
                 if (entry.isIntersecting) {
                     if (entry.target.id === 'stats') {
                         animateStats();
+                        observer.unobserve(entry.target);
                     }
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
                 }
             });
         }, observerOptions);
         
-        // Observe elements for animation
+        // Observe stats section
         document.addEventListener('DOMContentLoaded', () => {
-            const animateElements = document.querySelectorAll('.service-card, .pricing-card, .resource-card, .contact-method');
-            animateElements.forEach(el => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(30px)';
-                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                observer.observe(el);
-            });
-            
-            // Observe stats section
             const statsSection = document.getElementById('stats');
             if (statsSection) {
                 observer.observe(statsSection);
             }
+            
+            // Initialize AOS
+            AOS.init({
+                duration: 800,
+                once: true,
+                offset: 100
+            });
+            
+            // Typing Effect
+            const text = "From contract to close,\nI handle the details\nso you can focus on your clients.";
+            const typingElement = document.querySelector('.hero-sub');
+            if(typingElement) {
+                typingElement.innerHTML = ''; // Clear existing text
+                typingElement.classList.add('typing-cursor');
+                let i = 0;
+                function typeWriter() {
+                    if (i < text.length) {
+                        if(text.charAt(i) === '\n') {
+                            typingElement.innerHTML += '<br>';
+                        } else {
+                            typingElement.innerHTML += text.charAt(i);
+                        }
+                        i++;
+                        setTimeout(typeWriter, 40); // Typing speed
+                    } else {
+                        typingElement.classList.remove('typing-cursor');
+                    }
+                }
+                setTimeout(typeWriter, 500); // Delay start
+            }
         });
+
         
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1523,3 +1577,4 @@
     </script>
 </body>
 </html>
+

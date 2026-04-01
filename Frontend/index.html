@@ -36,7 +36,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
         :root {
             --navy: #181c24;
@@ -49,35 +48,12 @@
             --text-secondary: #b0b8c1;
             --accent: #e6a100;
             --accent-dark: #b97a00;
+            --dark-gray: #0f1218;
+            --mid-gray: #a6afbe;
+            --light-gray: rgba(255,255,255,0.12);
             --font-header: 'Inter', sans-serif;
             --font-body: 'Lato', sans-serif;
         }
-        
-        /* New Animations */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-        .floating-img {
-            animation: float 4s ease-in-out infinite;
-        }
-        
-        @keyframes pulse-glow {
-            0% { box-shadow: 0 0 0 0 rgba(230, 161, 0, 0.4); }
-            70% { box-shadow: 0 0 0 10px rgba(230, 161, 0, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(230, 161, 0, 0); }
-        }
-        .pulse-btn {
-            animation: pulse-glow 2s infinite;
-        }
-
-        /* Typing Effect Cursor */
-        .typing-cursor::after {
-            content: '|';
-            animation: blink 1s step-start infinite;
-        }
-        @keyframes blink { 50% { opacity: 0; } }
 
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
         body {
@@ -100,27 +76,24 @@
             letter-spacing: -1px;
         }
         h1 { font-size: 3rem; }
-        h2 { font-size: 2.2rem; text-align: center; }
-        p, li, label, .stat-label, .testimonial-text, .faq-answer, .contact-form input, .contact-form textarea, .contact-form select {
-            color: var(--text-main) !important;
-        }
+        h2 { font-size: 2.2rem; text-align: center; font-weight: 800; letter-spacing: -0.6px; }
+        p, li { color: var(--text-secondary); }
+        label { color: var(--text-main); }
         section {
             border-bottom: 1px solid var(--border);
             background: transparent;
         }
         /* --- Header & Navigation --- */
         .header {
-            background-color: rgba(24, 28, 36, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background-color: var(--navy);
             padding: 20px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             position: sticky;
             top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.10);
+            z-index: 2000;
+            border-bottom: 1px solid var(--border);
         }
         .header-actions {
             display: flex;
@@ -137,13 +110,16 @@
         .nav-links {
             list-style: none;
             display: flex;
-            gap: 30px;
+            gap: 18px;
+            flex-wrap: nowrap;
+            align-items: center;
         }
         .nav-links a {
             text-decoration: none;
             color: var(--white);
             font-weight: 700;
-            font-size: 1rem;
+            font-size: 0.98rem;
+            white-space: nowrap;
             transition: color 0.3s;
         }
         .nav-links a:hover { color: var(--accent); }
@@ -151,25 +127,41 @@
             background-color: var(--accent);
             color: var(--navy);
             padding: 10px 22px;
-            border-radius: 5px;
+            border-radius: 8px;
             font-weight: 700;
             text-decoration: none;
             margin-left: 20px;
-            transition: background 0.3s, transform 0.3s;
+            transition: background-color 0.15s ease, color 0.15s ease;
         }
-        .cta-header:hover { background: var(--accent-dark); transform: translateY(-2px); }
+        .cta-header:hover { background: var(--accent-dark); }
         /* --- Hamburger --- */
         .hamburger { display: none; flex-direction: column; cursor: pointer; }
-        .bar { width: 25px; height: 3px; background: #f5f6fa; margin: 4px 0; transition: 0.4s; }
-        @media (max-width: 900px) {
+        .bar { width: 25px; height: 3px; background: #f5f6fa; margin: 4px 0; transition: 0.15s ease; }
+        .nav-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.55);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.15s ease;
+            z-index: 1500;
+        }
+        .nav-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .nav-panel-header { display: none; }
+
+        @media (max-width: 1200px) {
             .header {
                 flex-direction: row;
                 justify-content: space-between;
                 align-items: center;
-                padding: 8px 10px;
+                padding: 12px 14px;
                 min-height: 56px;
                 height: 64px;
             }
+            .nav-links { display: flex; }
             .logo {
                 flex: 0 0 auto;
                 justify-content: flex-start;
@@ -188,48 +180,86 @@
                 height: 44px;
                 display: flex;
                 align-items: center;
+                margin-left: 0;
             }
             .hamburger {
                 display: flex;
                 margin-left: 8px;
-                z-index: 1201;
+                z-index: 2200;
                 height: 44px;
                 align-items: center;
             }
+            .hamburger.open .bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+            .hamburger.open .bar:nth-child(2) { opacity: 0; }
+            .hamburger.open .bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
             .nav-links {
-                display: none;
                 position: fixed;
                 top: 0;
                 right: 0;
                 width: 80vw;
-                max-width: 320px;
+                max-width: 360px;
                 height: 100vh;
                 background: var(--navy);
                 flex-direction: column;
                 gap: 0;
-                box-shadow: -2px 0 16px rgba(0,0,0,0.18);
+                box-shadow: -2px 0 8px rgba(0,0,0,0.20);
                 border-radius: 0 0 0 0;
                 overflow-y: auto;
-                z-index: 1200;
-                padding-top: 80px;
-                transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+                z-index: 2100;
+                padding: 10px 0 18px 0;
+                border-left: 1px solid var(--border);
                 transform: translateX(100%);
+                transition: transform 0.2s ease;
+                pointer-events: none;
             }
             .nav-links.open {
-                display: flex;
                 transform: translateX(0);
+                pointer-events: auto;
             }
-            .nav-links li {
+            .nav-links .nav-panel-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 14px 18px;
+                border-bottom: 1px solid var(--border);
+                position: sticky;
+                top: 0;
+                background: var(--navy);
+                z-index: 1;
+            }
+            .nav-panel-title {
+                font-family: var(--font-header);
+                font-size: 0.95rem;
+                font-weight: 700;
+                color: var(--text-secondary);
+                letter-spacing: 0.02em;
+                text-transform: uppercase;
+            }
+            .nav-close {
+                appearance: none;
+                background: transparent;
+                border: 1px solid var(--border);
+                color: var(--white);
+                width: 40px;
+                height: 40px;
+                border-radius: 10px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+            }
+            .nav-links li:not(.nav-panel-header) {
                 width: 100%;
                 text-align: left;
-                padding: 18px 24px;
+                padding: 16px 18px;
                 border-bottom: 1px solid var(--border);
             }
             .nav-links a {
                 font-size: 1.2rem;
                 width: 100%;
                 display: block;
-        }
+                padding: 2px 0;
+            }
         }
         @media (max-width: 600px) {
             .header {
@@ -262,12 +292,12 @@
         }
         /* --- Hero Section --- */
         #home {
-            background: linear-gradient(rgba(13, 27, 42, 0.7), rgba(13, 27, 42, 0.7)), url('dj-johnson-1kx8e7t66mQ-unsplash (1).jpg') no-repeat center center/cover;
+            background: url('dj-johnson-1kx8e7t66mQ-unsplash (1).jpg') no-repeat center center/cover;
             color: var(--white);
             text-align: center;
-            padding: 200px 20px 200px 20px;
+            padding: 140px 20px 140px 20px;
             position: relative;
-            min-height: 100vh;
+            min-height: 85vh;
             overflow: hidden;
         }
         #home::before {
@@ -275,14 +305,13 @@
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
             z-index: 1;
-            background: inherit;
-            filter: blur(3px) brightness(0.7);
+            background: rgba(0,0,0,0.60);
             pointer-events: none;
         }
         #home .hero-content { position: relative; z-index: 2; }
         #home h1 { color: var(--white); font-size: 3.2rem; }
         #home .hero-sub { font-size: 1.3rem; margin-bottom: 18px; color: var(--accent); }
-        #home p { font-size: 1.2rem; max-width: 600px; margin: 0 auto 30px; }
+        #home p { font-size: 1.2rem; max-width: 600px; margin: 0 auto 30px; color: var(--offwhite); }
         .hero-btns { 
             display: flex; 
             justify-content: center; 
@@ -296,41 +325,41 @@
             color: var(--navy);
             padding: 14px 32px;
             text-decoration: none;
-            border-radius: 5px;
+            border-radius: 8px;
             font-weight: 700;
             font-size: 1.1rem;
             border: none;
             cursor: pointer;
-            transition: background 0.3s, transform 0.3s;
+            transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
             display: inline-block;
             text-align: center;
         }
-        .cta-button:hover, .secondary-btn:hover { background: var(--accent-dark); color: var(--white); transform: translateY(-2px); }
+        .cta-button:hover, .secondary-btn:hover { background: var(--accent-dark); color: var(--white); }
         .secondary-btn { background: var(--navy); color: var(--white); border: 1.5px solid var(--accent); }
         .secondary-btn:hover { background: var(--accent-dark); color: var(--navy); }
         /* --- About Section --- */
         .about-content {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             align-items: center;
-            justify-content: center;
-            gap: 30px;
-            text-align: center;
+            justify-content: space-between;
+            gap: 40px;
+            text-align: left;
         }
         .about-photo {
             margin-bottom: 10px;
         }
         .about-text {
-            max-width: 700px;
+            max-width: 720px;
             width: 100%;
             margin: 0 auto;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            align-items: flex-start;
+            justify-content: flex-start;
         }
         .about-photo {
-            width: 180px; height: 180px; border-radius: 50%; background: var(--navy); display: flex; align-items: center; justify-content: center; overflow: hidden; box-shadow: 0 4px 16px rgba(13,27,42,0.08); flex-shrink: 0;
+            width: 180px; height: 180px; border-radius: 50%; background: var(--navy); display: flex; align-items: center; justify-content: center; overflow: hidden; box-shadow: 0 1px 8px rgba(0,0,0,0.25); border: 1px solid var(--border); flex-shrink: 0;
         }
         .about-photo img { 
             width: 100%; 
@@ -351,9 +380,9 @@
         .service-card {
             background-color: #f8f9fa;
             padding: 36px 28px 32px 28px;
-            border-radius: 12px;
+            border-radius: 10px;
             text-align: center;
-            box-shadow: 0 2px 12px rgba(13,27,42,0.04);
+            box-shadow: none;
             position: relative;
             max-width: 300px;
             width: 100%;
@@ -404,18 +433,17 @@
             margin-top: 40px;
         }
         .pricing-card {
-            background: var(--white);
-            border: 2px solid var(--light-gray);
-            border-radius: 12px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
             padding: 30px;
             text-align: center;
             position: relative;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: border-color 0.15s ease, background-color 0.15s ease;
         }
-        .pricing-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(13,27,42,0.1); }
+        .pricing-card:hover { border-color: var(--light-gray); }
         .pricing-card.featured {
             border-color: var(--accent);
-            transform: scale(1.05);
         }
         .pricing-badge {
             position: absolute;
@@ -424,8 +452,8 @@
             transform: translateX(-50%);
             background: var(--accent);
             color: var(--white);
-            padding: 6px 16px;
-            border-radius: 20px;
+            padding: 6px 12px;
+            border-radius: 8px;
             font-size: 0.9rem;
             font-weight: 700;
         }
@@ -451,7 +479,7 @@
         .pricing-features i { color: var(--accent); }
         
         /* --- Stats Section --- */
-        #stats { background: linear-gradient(135deg, var(--navy), var(--dark-gray)); color: var(--white); }
+        #stats { background: var(--navy); color: var(--white); }
         #stats h2 { color: var(--white); }
         .stats-grid {
             display: grid;
@@ -504,13 +532,13 @@
         .testimonial-photo i { font-size: 2rem; color: var(--white); }
         .testimonial-stars { color: #f1c40f; margin-bottom: 8px; }
         .testimonial-text { font-style: italic; color: var(--mid-gray); margin-bottom: 8px; }
-        .testimonial-name { font-weight: 700; color: var(--navy); }
+        .testimonial-name { font-weight: 700; color: var(--text-main); }
         .carousel-controls { margin-top: 18px; display: flex; justify-content: center; gap: 10px; }
         .carousel-dot {
-            width: 12px; height: 12px; border-radius: 50%; background: var(--mid-gray); cursor: pointer; border: none; transition: background 0.3s;
+            width: 12px; height: 12px; border-radius: 50%; background: var(--mid-gray); cursor: pointer; border: none; transition: background 0.15s ease;
         }
         .carousel-dot.active { background: var(--accent); }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         /* --- FAQs Section --- */
         .faq-list { max-width: 800px; margin: 0 auto; }
         .faq-item {
@@ -541,7 +569,7 @@
         }
         .faq-item.open .faq-answer { display: block; animation: fadeIn 0.5s; }
         .faq-item.open .faq-question i { transform: rotate(90deg); }
-        .faq-question i { transition: transform 0.3s; margin-left: 10px; }
+        .faq-question i { transition: transform 0.15s ease; margin-left: 10px; }
 
         /* --- Resources Section --- */
         .resources-grid {
@@ -551,14 +579,14 @@
             margin-top: 40px;
         }
         .resource-card {
-            background: var(--white);
-            border: 1px solid var(--light-gray);
-            border-radius: 12px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
             padding: 30px;
             text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: border-color 0.15s ease;
         }
-        .resource-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(13,27,42,0.1); }
+        .resource-card:hover { border-color: var(--light-gray); }
         .resource-icon {
             width: 60px;
             height: 60px;
@@ -587,17 +615,17 @@
         /* --- Contact Section --- */
         .contact-form { max-width: 700px; margin: 40px auto 0; display: grid; grid-template-columns: 1fr; gap: 20px; }
         .form-group { display: flex; flex-direction: column; }
-        .contact-form label { margin-bottom: 5px; font-weight: 700; color: var(--navy); }
+        .contact-form label { margin-bottom: 5px; font-weight: 700; color: var(--text-main); }
         .contact-form input, .contact-form textarea {
             padding: 12px;
             border: 1px solid var(--light-gray);
-            border-radius: 5px;
+            border-radius: 8px;
             font-family: var(--font-body);
             font-size: 1rem;
         }
         .contact-form input:focus, .contact-form textarea:focus { outline: 2px solid var(--accent); }
         .contact-form button { justify-self: center; border: none; cursor: pointer; width: 170px; margin: 0 auto; display: block; }
-        .contact-form select { padding: 12px; border: 1px solid var(--light-gray); border-radius: 5px; font-family: var(--font-body); font-size: 1rem; }
+        .contact-form select { padding: 12px; border: 1px solid var(--light-gray); border-radius: 8px; font-family: var(--font-body); font-size: 1rem; }
         .contact-form select:focus { outline: 2px solid var(--accent); }
         
         .contact-methods {
@@ -609,11 +637,11 @@
         .contact-method {
             text-align: center;
             padding: 30px 20px;
-            border: 1px solid var(--light-gray);
-            border-radius: 12px;
-            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            transition: border-color 0.15s ease;
         }
-        .contact-method:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(13,27,42,0.1); }
+        .contact-method:hover { border-color: var(--light-gray); }
         .method-icon {
             width: 60px;
             height: 60px;
@@ -687,11 +715,12 @@
         .footer-socials a:hover { color: var(--accent); }
         /* --- Responsive Design --- */
         @media (max-width: 900px) {
-            .header { flex-direction: column; gap: 15px; }
+            .header { flex-direction: row; gap: 0; }
             .about-content { flex-direction: column; text-align: center; justify-content: center; align-items: center; }
+            .about-text { align-items: center; text-align: center; }
             .about-photo { margin-bottom: 18px; width: 120px; height: 120px; }
-            h1 { font-size: 2rem; }
-            h2 { font-size: 1.2rem; }
+            h1 { font-size: 2.2rem; }
+            h2 { font-size: 1.85rem; }
             .services-grid, .pricing-grid, .resources-grid, .stats-grid, .contact-methods, .contact-info { grid-template-columns: 1fr; gap: 24px; }
             .hero-btns { flex-direction: column; align-items: center; gap: 12px; }
             .about-btns { flex-direction: column; align-items: center; gap: 12px; }
@@ -705,10 +734,10 @@
         }
         
         @media (max-width: 600px) {
-            .container { padding: 24px 5px; }
-            .header { padding: 10px 5px; }
-            h1 { font-size: 1.2rem; }
-            h2 { font-size: 1rem; }
+            .container { padding: 22px 14px; }
+            .header { padding: 10px 12px; }
+            h1 { font-size: 1.8rem; }
+            h2 { font-size: 1.65rem; }
             .about-photo { width: 90px; height: 90px; }
             .cta-button, .secondary-btn, .contact-form button { padding: 10px 10px; font-size: 1rem; width: 100%; }
             .form-group { margin-bottom: 10px; }
@@ -730,7 +759,15 @@
             background: var(--card-bg) !important;
             color: var(--text-main) !important;
             border: 1.5px solid var(--border);
-            box-shadow: 0 2px 16px rgba(0,0,0,0.10);
+            box-shadow: 0 1px 8px rgba(0,0,0,0.22);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+                scroll-behavior: auto !important;
+            }
         }
         .testimonial-carousel, .faq-list {
             background: transparent !important;
@@ -778,10 +815,10 @@
             color: var(--white) !important;
         }
         @media (max-width: 900px) {
-            .container { padding: 24px 5px; }
+            .container { padding: 26px 16px; }
         }
         @media (max-width: 600px) {
-            .container { padding: 10px 1px; }
+            .container { padding: 22px 14px; }
         }
     </style>
 </head>
@@ -790,6 +827,12 @@
         <a href="#home" class="logo" style="display: flex; align-items: center; height: 100%;"><img src="AskOscLogo.png" alt="AskOsc Logo" style="height: 56px; width: auto; display: block;"></a>
         <nav>
             <ul class="nav-links" id="navLinks">
+                <li class="nav-panel-header">
+                    <span class="nav-panel-title">Menu</span>
+                    <button type="button" class="nav-close" onclick="closeNav()" aria-label="Close menu">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </li>
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#services">Services</a></li>
@@ -812,149 +855,26 @@
             </div>
         </div>
     </header>
-    <style>
-    .header {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        background: rgba(24, 28, 36, 0.85);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        padding: 0 12px;
-        min-height: 72px;
-        height: 72px;
-        width: 100%;
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-    }
-    .logo {
-        flex: 0 0 auto;
-        display: flex;
-        align-items: center;
-        height: 100%;
-    }
-    .logo img {
-        height: 56px;
-        width: auto;
-        display: block;
-    }
-    .nav-links {
-        list-style: none;
-        display: flex;
-        gap: 30px;
-        margin: 0 24px;
-    }
-    .nav-links a {
-        text-decoration: none;
-        color: var(--white);
-        font-weight: 700;
-        font-size: 1rem;
-        transition: color 0.3s;
-    }
-    .nav-links a:hover { color: var(--accent); }
-    .header-actions {
-        flex: 0 0 auto;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        height: 100%;
-    }
-    .cta-header {
-        padding: 10px 20px;
-        font-size: 1.08rem;
-        height: 44px;
-        display: flex;
-        align-items: center;
-        border-radius: 8px;
-    }
-    .hamburger {
-        display: flex;
-        align-items: center;
-        height: 44px;
-        margin-left: 8px;
-        cursor: pointer;
-    }
-    @media (max-width: 1100px) {
-        .nav-links { gap: 18px; margin: 0 8px; }
-    }
-    @media (max-width: 900px) {
-        .header {
-            min-height: 64px;
-            height: 64px;
-            padding: 0 8px;
-        }
-        .logo img { height: 44px !important; }
-        .cta-header { height: 40px; font-size: 1rem; padding: 8px 12px; }
-        .hamburger { height: 40px; }
-        .nav-links {
-            display: none;
-            position: fixed;
-            top: 0;
-            right: 0;
-            width: 80vw;
-            max-width: 320px;
-            height: 100vh;
-            background: var(--navy);
-            flex-direction: column;
-            gap: 0;
-            box-shadow: -2px 0 16px rgba(0,0,0,0.18);
-            border-radius: 0 0 0 0;
-            overflow-y: auto;
-            z-index: 1200;
-            padding-top: 80px;
-            transition: transform 0.3s cubic-bezier(.4,0,.2,1);
-            transform: translateX(100%);
-        }
-        .nav-links.open {
-            display: flex;
-            transform: translateX(0);
-        }
-        .nav-links li {
-            width: 100%;
-            text-align: left;
-            padding: 18px 24px;
-            border-bottom: 1px solid var(--border);
-        }
-        .nav-links a {
-            font-size: 1.2rem;
-            width: 100%;
-            display: block;
-        }
-    }
-    @media (max-width: 600px) {
-        .header {
-            min-height: 56px;
-            height: 56px;
-            padding: 0 4px;
-        }
-        .logo img { height: 36px !important; }
-        .cta-header { height: 32px; font-size: 0.96rem; padding: 4px 8px; }
-        .hamburger { height: 32px; }
-    }
-    </style>
+    <div class="nav-overlay" id="navOverlay" onclick="closeNav()"></div>
     <main>
         <section id="home">
             <div class="hero-split" style="display: flex; align-items: center; justify-content: center; min-height: 60vh; gap: 32px; flex-wrap: wrap; position: relative; z-index: 2;">
-                <div class="hero-left" data-aos="fade-right" style="flex: 0 0 220px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-                    <img src="FINAL FINAL.png" class="floating-img" alt="Oscar Brimelow business headshot" style="width: 160px; height: 160px; border-radius: 50%; object-fit: cover; box-shadow: 0 6px 32px rgba(13,27,42,0.18); margin-bottom: 14px; border: 4px solid var(--white);">
+                <div class="hero-left" style="flex: 0 0 220px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                    <img src="FINAL FINAL.png" alt="Oscar Brimelow business headshot" style="width: 160px; height: 160px; border-radius: 50%; object-fit: cover; box-shadow: 0 1px 8px rgba(0,0,0,0.25); margin-bottom: 14px; border: 1px solid var(--border);">
                     <div style="font-family: var(--font-header); font-weight: 700; color: var(--white); font-size: 1.2rem; letter-spacing: -0.5px; text-shadow: 0 2px 8px rgba(13,27,42,0.18);">Oscar Brimelow</div>
                     <div style="color: var(--accent); font-size: 1.02rem; margin-top: 2px; font-weight: 500;">Cleveland Transaction Coordinator</div>
             </div>
-                <div class="hero-right" data-aos="fade-left" style="flex: 1 1 420px; min-width: 280px; max-width: 540px; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; text-align: left;">
+                <div class="hero-right" style="flex: 1 1 420px; min-width: 280px; max-width: 540px; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; text-align: left;">
                     <h1 style="font-size: 2.7rem; color: var(--white); font-family: var(--font-header); font-weight: 800; margin-bottom: 18px; line-height: 1.1;">
                         Seamless Closings.<br>
                         Happy Clients.<br>
                         Less Stress.
                     </h1>
                     <div class="hero-sub" style="font-size: 1.2rem; color: var(--accent); margin: 18px 0 28px 0; max-width: 480px; text-align: left; font-weight: 500; align-self: flex-start; min-height: 80px;">
-                        From contract to close,<br>
-                        I handle the details<br>
-                        so you can focus on your clients.
+                        From contract to close, I handle the details so you can focus on your clients.
                     </div>
                     <div class="hero-btns" style="display: flex; gap: 14px; justify-content: flex-start;">
-                        <a href="#contact" class="cta-button pulse-btn">Get Started</a>
+                        <a href="#contact" class="cta-button">Get Started</a>
                         <a href="#services" class="secondary-btn">See Services</a>
                     </div>
                 </div>
@@ -970,17 +890,18 @@
             }
             @media (max-width: 600px) {
                 .hero-split { gap: 10px; }
-                .hero-right h1 { font-size: 1.3rem !important; }
+                .hero-right h1 { font-size: 1.9rem !important; }
+                .hero-sub { min-height: 0 !important; }
                 .hero-left img { width: 100px !important; height: 100px !important; }
             }
             </style>
         </section>
         <section id="about" class="container">
             <div class="about-content">
-                <div class="about-photo" data-aos="zoom-in">
+                <div class="about-photo">
                     <img src="FINAL FINAL.png" alt="Oscar Brimelow headshot" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
                 </div>
-                <div class="about-text" data-aos="fade-up">
+                <div class="about-text">
                     <h2>Meet Oscar Brimelow</h2>
                     <p style="font-size:1.08rem; color:var(--text-secondary); margin-bottom:10px;">Founder of AskOsc and your dedicated transaction coordinator.</p>
                     <p style="font-size:1.01rem; color:var(--text-main); margin-bottom:2px; line-height:1.6;">50+ residential transactions managed with precision.</p>
@@ -995,31 +916,31 @@
         <section id="services" class="container">
             <h2>What I Offer</h2>
             <div class="services-grid">
-                <div class="service-card" data-aos="fade-up">
+                <div class="service-card">
                     <i class="fa-solid fa-calendar-check"></i>
                     <h3>Timeline & Deadline Management</h3>
                     <p>I meticulously track all contract dates and deadlines, from inspections to closing, ensuring nothing is ever missed.</p>
                     <a href="#contact" class="learn-btn cta-button">Learn More</a>
                 </div>
-                <div class="service-card" data-aos="fade-up">
+                <div class="service-card">
                     <i class="fa-solid fa-file-signature"></i>
                     <h3>Document Coordination</h3>
                     <p>I manage the collection of all necessary documents and disclosures, ensuring all parties have what they need for a complete file.</p>
                     <a href="#contact" class="learn-btn cta-button">Learn More</a>
                 </div>
-                <div class="service-card" data-aos="fade-up">
+                <div class="service-card">
                     <i class="fa-solid fa-comments"></i>
                     <h3>Communication Hub</h3>
                     <p>I act as the central point of contact for the lender, title company, and other parties to keep everyone informed and on track.</p>
                     <a href="#contact" class="learn-btn cta-button">Learn More</a>
                 </div>
-                <div class="service-card" data-aos="fade-up">
+                <div class="service-card">
                     <i class="fa-solid fa-shield-halved"></i>
                     <h3>Compliance Assurance</h3>
                     <p>I review transaction files for completeness and accuracy, ensuring your brokerage has a compliant and audit-ready file.</p>
                     <a href="#contact" class="learn-btn cta-button">Learn More</a>
                 </div>
-                <div class="service-card" data-aos="fade-up">
+                <div class="service-card">
                     <i class="fa-solid fa-magnifying-glass"></i>
                     <h3>Inspection Coordination</h3>
                     <p>I make sure it's completed on time, to ensure ROCs are issued according to contract.</p>
@@ -1034,21 +955,21 @@
         <section id="process" class="container">
             <h2>How It Works</h2>
             <div class="process-timeline">
-                <div class="process-step" data-aos="fade-right">
+                <div class="process-step">
                     <div class="step-number">1</div>
                     <div class="step-content">
                         <h3>Initial Consultation</h3>
                         <p>We discuss your needs, review your current process, and determine how I can best support your transactions.</p>
                     </div>
                 </div>
-                <div class="process-step" data-aos="fade-right">
+                <div class="process-step">
                     <div class="step-number">2</div>
                     <div class="step-content">
                         <h3>Contract to Close</h3>
                         <p>Once a deal goes under contract, I take over all administrative tasks, keeping you updated throughout the process.</p>
                     </div>
                 </div>
-                <div class="process-step" data-aos="fade-right">
+                <div class="process-step">
                     <div class="step-number">3</div>
                     <div class="step-content">
                         <h3>Seamless Closing</h3>
@@ -1062,7 +983,7 @@
             <h2>Simple, Transparent Pricing</h2>
             <p style="text-align: center; margin-bottom: 30px; color: var(--text-secondary);">*If a transaction goes to mutual release, you only pay $75</p>
             <div class="pricing-grid" style="justify-content: center; display: flex;">
-                <div class="pricing-card featured" data-aos="flip-left" style="max-width: 500px;">
+                <div class="pricing-card featured" style="max-width: 500px;">
                     <div class="pricing-badge">Standard Service</div>
                     <div class="pricing-header">
                         <h3>Complete Transaction Coordination</h3>
@@ -1086,13 +1007,13 @@
         <section id="payments" class="container">
             <h2>Payments</h2>
             <div style="max-width: 800px; margin: 0 auto;">
-                <div style="background: var(--card-bg); padding: 30px; border-radius: 12px; margin-bottom: 20px; border: 1.5px solid var(--border);">
+                <div style="background: var(--card-bg); padding: 30px; border-radius: 10px; margin-bottom: 20px; border: 1px solid var(--border);">
                     <h3 style="color: var(--accent); margin-bottom: 20px; font-size: 1.3rem;">Payment Details</h3>
                     <p style="color: var(--text-main); margin-bottom: 15px; font-size: 1.1rem; font-weight: 600;">My fee is <strong style="color: var(--accent);">$300 per closing transaction</strong> and <strong style="color: var(--accent);">$75 for non-closures</strong>.</p>
                     <p style="color: var(--text-main); margin-bottom: 0;">Payments are to be made as a deposit into my US bank account or via PayPal within 7 days after closing or after an executed MR has been added to the loop.</p>
                 </div>
 
-                <div style="background: var(--card-bg); padding: 30px; border-radius: 12px; border: 1.5px solid var(--border);">
+                <div style="background: var(--card-bg); padding: 30px; border-radius: 10px; border: 1px solid var(--border);">
                     <h3 style="color: var(--accent); margin-bottom: 20px; font-size: 1.3rem;">💡 Pro Tip</h3>
                     <p style="color: var(--text-main); margin: 0; line-height: 1.6;">You can add an admin fee to your contracts so your clients pay for the service, not you (payments to me are also a tax write-off). Some agents add a little extra to counter non-closure payments - and the TC amount added to the contract doesn't change my fees. Just check with your brokerage to ensure company compliance.</p>
                 </div>
@@ -1104,12 +1025,12 @@
             <p style="text-align: center; margin-bottom: 30px; color: var(--text-secondary);">After we're all set up to work together, adding me to your team is easy.</p>
             
             <div style="max-width: 800px; margin: 0 auto;">
-                <div style="background: var(--card-bg); padding: 30px; border-radius: 12px; margin-bottom: 20px; border: 1.5px solid var(--border);">
+                <div style="background: var(--card-bg); padding: 30px; border-radius: 10px; margin-bottom: 20px; border: 1px solid var(--border);">
                     <h3 style="color: var(--accent); margin-bottom: 20px; font-size: 1.3rem;">Getting Started</h3>
                     <p style="margin-bottom: 20px; color: var(--text-main);">All you need to do is add me as your Transaction Coordinator to a loop on Dotloop - or send me an email if you're working with another system. That's <strong>Oscar Brimelow</strong> and <strong>oscar@askosc.com</strong>.</p>
                 </div>
 
-                <div style="background: var(--card-bg); padding: 30px; border-radius: 12px; margin-bottom: 20px; border: 1.5px solid var(--border);">
+                <div style="background: var(--card-bg); padding: 30px; border-radius: 10px; margin-bottom: 20px; border: 1px solid var(--border);">
                     <h3 style="color: var(--accent); margin-bottom: 20px; font-size: 1.3rem;">Once I'm involved with a contract, I will:</h3>
                     <ul style="list-style: none; padding: 0; color: var(--text-main);">
                         <li style="margin-bottom: 15px; display: flex; align-items: flex-start; gap: 12px;">
@@ -1139,7 +1060,7 @@
                     </ul>
                 </div>
 
-                <div style="background: var(--card-bg); padding: 30px; border-radius: 12px; border: 1.5px solid var(--border);">
+                <div style="background: var(--card-bg); padding: 30px; border-radius: 10px; border: 1px solid var(--border);">
                     <p style="text-align: center; color: var(--text-main); font-weight: 600; margin: 0;">
                         <i class="fa-solid fa-envelope" style="color: var(--accent); margin-right: 8px;"></i>
                         You will always be cc'ed on all correspondence unless otherwise requested.
@@ -1153,12 +1074,12 @@
             <p style="text-align: center; margin-bottom: 30px; color: var(--text-secondary);">Here's what I'll need from you to get started</p>
             
             <div style="max-width: 800px; margin: 0 auto;">
-                <div style="background: var(--card-bg); padding: 30px; border-radius: 12px; margin-bottom: 20px; border: 1.5px solid var(--border);">
+                <div style="background: var(--card-bg); padding: 30px; border-radius: 10px; margin-bottom: 20px; border: 1px solid var(--border);">
                     <h3 style="color: var(--accent); margin-bottom: 20px; font-size: 1.3rem;">Brokerage Documents</h3>
                     <p style="color: var(--text-main); margin: 0;">I'll need your brokerage's forms. You can email them to me, or I can login to your Dotloop and grab them myself.</p>
                 </div>
 
-                <div style="background: var(--card-bg); padding: 30px; border-radius: 12px; margin-bottom: 20px; border: 1.5px solid var(--border);">
+                <div style="background: var(--card-bg); padding: 30px; border-radius: 10px; margin-bottom: 20px; border: 1px solid var(--border);">
                     <h3 style="color: var(--accent); margin-bottom: 20px; font-size: 1.3rem;">Login Details</h3>
                     <ul style="list-style: none; padding: 0; color: var(--text-main);">
                         <li style="margin-bottom: 12px; display: flex; align-items: flex-start; gap: 12px;">
@@ -1181,7 +1102,7 @@
                     <p style="color: var(--text-secondary); margin-top: 15px; font-style: italic;">As the industry changes and your brokerage along with it, additional logins may be required to get the job done.</p>
                 </div>
 
-                <div style="background: var(--card-bg); padding: 30px; border-radius: 12px; border: 1.5px solid var(--border);">
+                <div style="background: var(--card-bg); padding: 30px; border-radius: 10px; border: 1px solid var(--border);">
                     <h3 style="color: var(--accent); margin-bottom: 20px; font-size: 1.3rem;">Preferred Contacts</h3>
                     <ul style="list-style: none; padding: 0; color: var(--text-main);">
                         <li style="margin-bottom: 12px; display: flex; align-items: flex-start; gap: 12px;">
@@ -1200,7 +1121,7 @@
         <section id="working-hours" class="container">
             <h2>Working Hours</h2>
             <div style="max-width: 600px; margin: 0 auto;">
-                <div style="background: var(--card-bg); padding: 30px; border-radius: 12px; border: 1.5px solid var(--border);">
+                <div style="background: var(--card-bg); padding: 30px; border-radius: 10px; border: 1px solid var(--border);">
                     <p style="color: var(--text-main); margin-bottom: 20px; line-height: 1.6;">I'm originally from Cleveland but currently based in South Africa, which puts me 6-7 hours ahead of Cleveland time. This means I'm often working on your files while you're sleeping, getting things done overnight so you wake up to progress.</p>
                     
                     <p style="color: var(--text-main); margin-bottom: 20px; line-height: 1.6;">I monitor emails until around 5pm Cleveland time and jump on any urgent issues that come up during your business day.</p>
@@ -1212,15 +1133,15 @@
 
         <section id="stats" class="container">
             <div class="stats-grid">
-                <div class="stat-item" data-aos="zoom-in">
+                <div class="stat-item">
                     <div class="stat-number" data-target="50">0</div>
                     <div class="stat-label">Transactions Completed</div>
                 </div>
-                <div class="stat-item" data-aos="zoom-in">
+                <div class="stat-item">
                     <div class="stat-number" data-target="100">0</div>
                     <div class="stat-label">Happy Clients</div>
                 </div>
-                <div class="stat-item" data-aos="zoom-in">
+                <div class="stat-item">
                     <div class="stat-number" data-target="16">0</div>
                     <div class="stat-label">Hours Saved Per Deal</div>
                 </div>
@@ -1229,19 +1150,19 @@
         <section id="resources" class="container">
             <h2>Resources & Insights</h2>
             <div class="resources-grid">
-                <div class="resource-card" data-aos="fade-up">
+                <div class="resource-card">
                     <div class="resource-icon"><i class="fa-solid fa-file-lines"></i></div>
                     <h3>Transaction Checklist</h3>
                     <p>Download our comprehensive checklist to ensure nothing gets missed in your next transaction.</p>
                     <a href="mailto:oscar@askosc.com?subject=Transaction Checklist Request" class="resource-link">Request PDF <i class="fa-solid fa-envelope"></i></a>
                 </div>
-                <div class="resource-card" data-aos="fade-up">
+                <div class="resource-card">
                     <div class="resource-icon"><i class="fa-solid fa-clock"></i></div>
                     <h3>Timeline Guide</h3>
                     <p>Learn the critical deadlines and milestones in a typical residential real estate transaction.</p>
                     <a href="mailto:oscar@askosc.com?subject=Timeline Guide Request" class="resource-link">Request Guide <i class="fa-solid fa-envelope"></i></a>
                 </div>
-                <div class="resource-card" data-aos="fade-up">
+                <div class="resource-card">
                     <div class="resource-icon"><i class="fa-solid fa-lightbulb"></i></div>
                     <h3>Pro Tips</h3>
                     <p>Expert advice on streamlining your real estate business and improving client satisfaction.</p>
@@ -1253,27 +1174,27 @@
         <section id="faqs" class="container">
             <h2>Frequently Asked Questions</h2>
             <div class="faq-list">
-            <div class="faq-item" data-aos="fade-up">
+            <div class="faq-item">
                     <div class="faq-question" onclick="toggleFAQ(this)">What is a Transaction Coordinator? <i class="fa-solid fa-chevron-right"></i></div>
                     <div class="faq-answer">A Transaction Coordinator (TC) is a real estate professional who manages all the administrative tasks and paperwork involved in a transaction from the moment it goes under contract until it closes. We handle deadlines, documentation, and communication to ensure a smooth process.</div>
             </div>
-            <div class="faq-item" data-aos="fade-up">
+            <div class="faq-item">
                     <div class="faq-question" onclick="toggleFAQ(this)">Why do I need one? <i class="fa-solid fa-chevron-right"></i></div>
                     <div class="faq-answer">By delegating the administrative work to a TC, a real estate agent saves valuable time—up to 16 hours per transaction. This allows you to focus on high-value activities like lead generation, showing properties, and negotiating deals, ultimately helping you grow your business.</div>
             </div>
-            <div class="faq-item" data-aos="fade-up">
+            <div class="faq-item">
                     <div class="faq-question" onclick="toggleFAQ(this)">What qualifications do you have? <i class="fa-solid fa-chevron-right"></i></div>
                     <div class="faq-answer">My expertise comes from direct, hands-on experience coordinating 50+ residential real estate transactions and a deep understanding of the residential closing process. I operate with the highest level of professionalism and care, ensuring every transaction is handled with precision and attention to detail.</div>
             </div>
-            <div class="faq-item" data-aos="fade-up">
+            <div class="faq-item">
                     <div class="faq-question" onclick="toggleFAQ(this)">Do you work with commercial or land deals? <i class="fa-solid fa-chevron-right"></i></div>
                     <div class="faq-answer">No. To provide the most focused and expert service possible, I specialize exclusively in residential real estate transactions. I do not handle commercial or land-only deals.</div>
             </div>
-            <div class="faq-item" data-aos="fade-up">
+            <div class="faq-item">
                     <div class="faq-question" onclick="toggleFAQ(this)">How quickly can you start? <i class="fa-solid fa-chevron-right"></i></div>
                     <div class="faq-answer">I can typically begin working on a transaction within 24 hours of our initial consultation. For urgent situations, I can start immediately to ensure nothing falls through the cracks.</div>
             </div>
-            <div class="faq-item" data-aos="fade-up">
+            <div class="faq-item">
                     <div class="faq-question" onclick="toggleFAQ(this)">What areas do you serve? <i class="fa-solid fa-chevron-right"></i></div>
                     <div class="faq-answer">I primarily serve the Cleveland area and surrounding communities in Northeast Ohio. I can coordinate transactions throughout the region with expertise in local market conditions and requirements.</div>
                 </div>
@@ -1284,7 +1205,7 @@
             <p class="contact-intro">Ready to streamline your transactions? Get in touch via email or fill out the form below.</p>
             
             <div class="contact-methods">
-                <div class="contact-method" data-aos="fade-up">
+                <div class="contact-method">
                     <div class="method-icon"><i class="fa-solid fa-envelope"></i></div>
                     <h3>Send Email</h3>
                     <p>Drop me a line with your questions or to request a custom quote.</p>
@@ -1297,7 +1218,7 @@
             </div>
 
             <!-- Contact Form: Formspree integration -->
-            <form action="https://formspree.io/f/xblkrkjl" method="POST" class="contact-form" data-aos="fade-up">
+            <form action="https://formspree.io/f/xblkrkjl" method="POST" class="contact-form">
                 <div class="form-group">
                     <label for="name">Name *</label>
                     <input type="text" id="name" name="name" required>
@@ -1381,17 +1302,27 @@
         </div>
         <p style="margin-top:10px;">&copy; 2025 AskOsc. All rights reserved. | Cleveland Transaction Coordination</p>
     </footer>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Hamburger menu with slide-in overlay for mobile
+        function setNavState(isOpen) {
+            var nav = document.getElementById('navLinks');
+            var overlay = document.getElementById('navOverlay');
+            var hamburger = document.getElementById('hamburger');
+            if (!nav) return;
+
+            nav.classList.toggle('open', isOpen);
+            if (overlay) overlay.classList.toggle('open', isOpen);
+            if (hamburger) hamburger.classList.toggle('open', isOpen);
+            document.body.style.overflow = isOpen ? 'hidden' : '';
+        }
+
         function toggleNav() {
             var nav = document.getElementById('navLinks');
-            nav.classList.toggle('open');
-            if (nav.classList.contains('open')) {
-                document.body.style.overflow = 'hidden';
-            } else {
-                document.body.style.overflow = '';
-            }
+            var isOpen = nav && nav.classList.contains('open');
+            setNavState(!isOpen);
+        }
+
+        function closeNav() {
+            setNavState(false);
         }
         // --- Close mobile nav on link click ---
         document.addEventListener('DOMContentLoaded', function() {
@@ -1399,13 +1330,18 @@
             if (nav) {
                 nav.querySelectorAll('a').forEach(function(link) {
                     link.addEventListener('click', function() {
-                        if (nav.classList.contains('open')) {
-                            nav.classList.remove('open');
-                            document.body.style.overflow = '';
-                        }
+                        closeNav();
                     });
                 });
             }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeNav();
+        });
+
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 1200) closeNav();
         });
         
         // Testimonial carousel
@@ -1414,16 +1350,20 @@
         function showTestimonial(idx) {
             testimonials.forEach((t, i) => {
                 t.classList.toggle('active', i === idx);
-                dots[i].classList.toggle('active', i === idx);
+                if (dots[i]) {
+                    dots[i].classList.toggle('active', i === idx);
+                }
             });
         }
         
         // Auto-rotate testimonials
         var currentTestimonial = 0;
-        setInterval(() => {
-            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
-            showTestimonial(currentTestimonial);
-        }, 5000);
+        if (testimonials.length > 0) {
+            setInterval(() => {
+                currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+                showTestimonial(currentTestimonial);
+            }, 5000);
+        }
         
         // FAQ toggle
         function toggleFAQ(el) {
@@ -1483,36 +1423,6 @@
             const statsSection = document.getElementById('stats');
             if (statsSection) {
                 observer.observe(statsSection);
-            }
-            
-            // Initialize AOS
-            AOS.init({
-                duration: 800,
-                once: true,
-                offset: 100
-            });
-            
-            // Typing Effect
-            const text = "From contract to close,\nI handle the details\nso you can focus on your clients.";
-            const typingElement = document.querySelector('.hero-sub');
-            if(typingElement) {
-                typingElement.innerHTML = ''; // Clear existing text
-                typingElement.classList.add('typing-cursor');
-                let i = 0;
-                function typeWriter() {
-                    if (i < text.length) {
-                        if(text.charAt(i) === '\n') {
-                            typingElement.innerHTML += '<br>';
-                        } else {
-                            typingElement.innerHTML += text.charAt(i);
-                        }
-                        i++;
-                        setTimeout(typeWriter, 40); // Typing speed
-                    } else {
-                        typingElement.classList.remove('typing-cursor');
-                    }
-                }
-                setTimeout(typeWriter, 500); // Delay start
             }
         });
 
